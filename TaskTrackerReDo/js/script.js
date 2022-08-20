@@ -8,6 +8,9 @@ let todoColumn = document.getElementById("inject-to-do");
 let inProgressColumn = document.getElementById("inject-in-progress");
 let completedColumn = document.getElementById("inject-completed");
 
+//inject Modals
+let injectModals = document.getElementById('injectModals');
+
 //btns
 let addTaskBtn = document.getElementById("add-task-btn");
 
@@ -29,7 +32,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
 
     //styling for modal 1 outermost div
     modal1OutermostDiv.className = 'modal fade';
-    modal1OutermostDiv.id = 'exampleModal';
+    modal1OutermostDiv.id = taskTitle;
     modal1OutermostDiv.setAttribute('tabindex', '-1');
     modal1OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal1OutermostDiv.setAttribute('aria-hidden', 'true');
@@ -255,9 +258,11 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row3Div3.appendChild(row3DivBtn2);
 
     injectionLocation.appendChild(outermostDiv);
-};
+    //inject the modal as well
+    injectModals.appendChild(modal1OutermostDiv);
+ };
 
-createBlock(todoColumn, 'todoCard', 'Task Tracker Project', 'Work on the Task tracker', 'High', '10/10/21');
+createBlock(todoColumn, 'todoCard', 'TaskTrackerProject', 'Work on the Task tracker', 'High', '10/10/21');
 
 // 
 
