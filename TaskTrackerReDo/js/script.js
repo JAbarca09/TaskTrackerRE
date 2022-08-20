@@ -55,7 +55,12 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   let modalBodyCol4 = document.createElement('div');
   let modalBodyInputRow4 = document.createElement('input');
 
-  //Modal footer
+  //Modal1 Header
+  let modal1Header = document.createElement('div');
+  let modal1HeaderTitle = document.createElement('h5');
+  let modal1HeaderCloseBtn = document.createElement('button');
+
+  //Modal1 footer
   let modal1Footer = document.createElement('div');
   let modal1FooterCloseBtn1 = document.createElement('button');
   let modal1FooterCloseBtn2 = document.createElement('button');
@@ -108,7 +113,17 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   modalBodyInputRow4.id = 'dueDate';
   modalBodyInputRow4.setAttribute('type', 'date');
 
-  //styling for the modal 1 footer
+//styling for the modal 1 header
+modal1Header.className = 'modal-header';
+modal1HeaderTitle.className = 'modal-title';
+modal1HeaderTitle.id = 'exampleModalLabel';
+modal1HeaderTitle.innerHTML = 'Add Task';
+modal1HeaderCloseBtn.className = 'btn-close';
+modal1HeaderCloseBtn.setAttribute('type', 'button');
+modal1HeaderCloseBtn.setAttribute('data-bs-dismiss', 'modal');
+modal1HeaderCloseBtn.setAttribute('aria-label', 'Close');
+
+//styling for the modal 1 footer
   modal1Footer.className = 'modal-footer';
   modal1FooterCloseBtn1.className = 'btn btn-secondary';
   modal1FooterCloseBtn1.setAttribute('data-bs-dismiss', 'modal');
@@ -142,6 +157,10 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   modalBodyRow4.appendChild(modalBodyCol4);
   modalBodyCol4.appendChild(modalBodyInputRow4);
 
+  //putting the modal header together
+  modal1Header.appendChild(modal1HeaderTitle);
+  modal1Header.appendChild(modal1HeaderCloseBtn);
+
   //putting the modal footer together
   modal1Footer.appendChild('modal1FooterCloseBtn1');
   modal1Footer.appendChild('modal1FooterCloseBtn2');
@@ -152,6 +171,9 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   modalBodyForm.appendChild(modalBodyRow2);
   modalBodyForm.appendChild(modalBodyRow3);
   modalBodyForm.appendChild(modalBodyRow4);
+
+  //Putting the modal Together
+  //need body, header, footer
 
 
   //----------------------------------------------------------------------------------------------------------------
