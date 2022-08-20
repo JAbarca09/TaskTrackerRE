@@ -1,4 +1,8 @@
-//UPDATE: 8/11/22, the form inside the modal body is done
+/*
+UPDATE: 8/20/22, I created the first modal and got it injecting into the DOM but the task options 
+button does not open the modal. You have to fix the modal so that once the "Task Options" button is
+pressed the modal for its corresponding task opens!
+*/
 
 //My Js is connected!
 console.log("Hello World");
