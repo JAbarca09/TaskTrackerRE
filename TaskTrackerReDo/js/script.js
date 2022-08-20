@@ -19,7 +19,6 @@ let addTaskBtn = document.getElementById('add-task-btn');
 
 const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, taskPriority, dueDate) => {
   //Modal 1
-
   //Modal body
   let modalBody = document.createElement('div');
   let modalBodyForm = document.createElement('form');
@@ -55,6 +54,11 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   let modalBodyLabel4 = document.createElement('label');
   let modalBodyCol4 = document.createElement('div');
   let modalBodyInputRow4 = document.createElement('input');
+
+  //Modal footer
+  let modal1Footer = document.createElement('div');
+  let modal1FooterCloseBtn1 = document.createElement('button');
+  let modal1FooterCloseBtn2 = document.createElement('button');
 
   //styling for the first row
   modalBodyRow1.className = 'mb-3 row';
@@ -104,6 +108,16 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   modalBodyInputRow4.id = 'dueDate';
   modalBodyInputRow4.setAttribute('type', 'date');
 
+  //styling for the modal 1 footer
+  modal1Footer.className = 'modal-footer';
+  modal1FooterCloseBtn1.className = 'btn btn-secondary';
+  modal1FooterCloseBtn1.setAttribute('data-bs-dismiss', 'modal');
+  modal1FooterCloseBtn1.setAttribute('type', 'button');
+  modal1FooterCloseBtn1.innerHTML = 'Close';
+  modal1FooterCloseBtn2.className = 'btn btn-primary';
+  modal1FooterCloseBtn2.setAttribute('type', 'button');
+  modal1FooterCloseBtn2.innerHTML = 'Save Changes';
+
   //putting the first modal row together
   modalBodyRow1.appendChild(modalLabelRow1);
   modalBodyRow1.appendChild(modalBodyCol1);
@@ -127,8 +141,13 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
   modalBodyRow4.appendChild(modalBodyLabel4);
   modalBodyRow4.appendChild(modalBodyCol4);
   modalBodyCol4.appendChild(modalBodyInputRow4);
+
+  //putting the modal footer together
+  modal1Footer.appendChild('modal1FooterCloseBtn1');
+  modal1Footer.appendChild('modal1FooterCloseBtn2');
   
   //Putting the modal BODY TOGETHER
+  modalBody.appendChild(modalBodyForm);
   modalBodyForm.appendChild(modalBodyRow1);
   modalBodyForm.appendChild(modalBodyRow2);
   modalBodyForm.appendChild(modalBodyRow3);
