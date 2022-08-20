@@ -229,6 +229,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row2Div2.className = "col-12 d-flex justify-content-center";
     row2DivBtn.className = "btn btn-primary cardBtns";
     row2DivBtn.innerHTML = "Task Options";
+    row2DivBtn.setAttribute('data-bs-target', taskTitle)
 
     //styling for the third row
     row3.className = "row mt-2 pb-3";
