@@ -22,7 +22,7 @@
             </div>
             <div class="col-2 mb-3 mt-3">
                 <button id="add-task-btn" type="button" class="btn btn-light" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Add Task</button>
+                    data-bs-target="#addTask">Add Task</button>
             </div>
         </div>
     </div>
@@ -58,7 +58,57 @@
     </div>
     <!-- Modal is below -->
     <div id="injectModals"></div>
-    
+
+    <!-- Add task modal -->
+    <div class="modal fade" id="addTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Enter the Task details in here! -->
+                    <form>
+                        <div class="mb-3 row">
+                            <label for="taskName" class="col-sm-3 col-form-label">Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="taskName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="taskDescription" class="col-sm-3 col-form-label">Description:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="taskDescription">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="taskPriority" class="col-sm-3 col-form-label">Priority:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" id="taskPriority" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">To-Do</option>
+                                    <option value="2">In Progress</option>
+                                    <option value="3">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label for="dueDate" class="col-sm-3 col-form-label">Due Date:</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="calendarInput" id="dueDate">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="addTask" class="btn btn-primary">Add Task</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
