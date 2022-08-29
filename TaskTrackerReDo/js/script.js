@@ -94,7 +94,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modalBodyCol1.className = "col-sm-9";
     modalLabelRow1.className = "col-sm-3 col-form-label";
     modalLabelRow1.innerHTML = "Name:";
-    modalLabelRow1.setAttribute("for", `${taskTitle}`);
+    modalLabelRow1.setAttribute("for", ``);
     modalInputRow1.className = "form-control";
     modalInputRow1.id = `${taskTitle}`;
     modalInputRow1.setAttribute("type", "text");
@@ -236,7 +236,8 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row2Div2.className = "col-12 d-flex justify-content-center";
     row2DivBtn.className = "btn btn-primary cardBtns";
     row2DivBtn.innerHTML = "Task Options";
-    row2DivBtn.setAttribute('data-bs-target', taskTitle)
+    row2DivBtn.setAttribute('data-bs-target', "#" + taskTitle)
+    row2DivBtn.setAttribute('data-bs-toggle', "modal")
 
     //styling for the third row
     row3.className = "row mt-2 pb-3";
