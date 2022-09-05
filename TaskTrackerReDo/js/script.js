@@ -273,8 +273,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modal2SubDiv2.appendChild(modal2Body);
     modal2SubDiv2.appendChild(modal2Footer);
 
-    //inject this modal somewhere before you forget!
-
     //----------------------------------------------------------------------------------------------------------------
 
     //CREATE ELEMENTS FOR THE CARDS
@@ -336,8 +334,10 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row3Div3.appendChild(row3DivBtn2);
 
     injectionLocation.appendChild(outermostDiv);
-    //inject the modal as well
+
+    //inject the modals as well
     injectModals.appendChild(modal1OutermostDiv);
+    injectModals.appendChild(modal2OutermostDiv);
 };
 
 createBlock(todoColumn, "todoCard", "TaskTrackerProject", "Work on the Task tracker", "High", "10/10/21");
