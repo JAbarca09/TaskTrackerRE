@@ -4,6 +4,12 @@ button does not open the modal. You have to fix the modal so that once the "Task
 pressed the modal for its corresponding task opens!
 */
 
+/*
+BUGS:
+1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
+
+*/
+
 //injection locations
 let todoColumn = document.getElementById("inject-to-do");
 let inProgressColumn = document.getElementById("inject-in-progress");
@@ -217,6 +223,14 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     let modal2Header2 = document.createElement("div");
     let modal2HeaderTitle = document.createElement("h5");
 
+    //modal body declarations
+    let modal2Body = document.createElement("div");
+    let modal2BodyText = document.createElement("p");
+
+    //modal footer declarations
+    let modal2Footer = document.createElement("div");
+    let modal2FooterBtn = document.createElement("button");
+
     modal2OutermostDiv.className = "modal fade";
     modal2OutermostDiv.id = "ViewTask" + taskTitle;
     modal2OutermostDiv.setAttribute("tabindex", "-1");
@@ -230,7 +244,21 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     //modal header styling
     modal2Header2.className = "modal-header";
     modal2HeaderTitle.className = "modal-title";
-    modal2HeaderTitle.innerHTML = "Task Details"
+    modal2HeaderTitle.innerHTML = "Task Details";
+
+    //modal body styling
+    modal2Body.className = "modal-body";
+    modal2BodyText.innerHTML = taskDescription;
+
+    //modal footer styling
+    modal2Footer.className = "modal-footer";
+    modal2FooterBtn.className = "btn btn-secondary";
+    modal2FooterBtn.setAttribute("type", "button");
+    modal2FooterBtn.setAttribute("data-bs-dismiss", "modal");
+    modal2FooterBtn.innerHTML = "Close";
+
+    //appending Modal 2 together!
+
 
     //----------------------------------------------------------------------------------------------------------------
 
@@ -298,8 +326,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
 };
 
 createBlock(todoColumn, "todoCard", "TaskTrackerProject", "Work on the Task tracker", "High", "10/10/21");
-
-
 
 // injectionLocation,
 //     cardType,
