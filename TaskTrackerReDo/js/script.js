@@ -257,8 +257,23 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modal2FooterBtn.setAttribute("data-bs-dismiss", "modal");
     modal2FooterBtn.innerHTML = "Close";
 
-    //appending Modal 2 together!
+    //appending the modal header together
+    modal2Header2.appendChild(modal2HeaderTitle);
 
+    //appending the modal body together
+    modal2Body.appendChild(modal2BodyText);
+
+    //appending the modal footer together
+    modal2Footer.appendChild(modal2FooterBtn);
+
+    //appending Modal 2 together!
+    modal2OutermostDiv.appendChild(modal2SubDiv1);
+    modal2SubDiv1.appendChild(modal2SubDiv2);
+    modal2SubDiv2.appendChild(modal2Header2);
+    modal2SubDiv2.appendChild(modal2Body);
+    modal2SubDiv2.appendChild(modal2Footer);
+
+    //inject this modal somewhere before you forget!
 
     //----------------------------------------------------------------------------------------------------------------
 
