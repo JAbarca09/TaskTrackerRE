@@ -8,7 +8,17 @@ import { hi } from './localStorage.js';
 BUGS:
 1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
 
+Additional Things to consider:
+    1. When you view task show the date!
 */
+
+//injection card column locations
+let todoColumn = document.getElementById("inject-to-do");
+let inProgressColumn = document.getElementById("inject-in-progress");
+let completedColumn = document.getElementById("inject-completed");
+
+//inject Modal location
+let injectModals = document.getElementById("injectModals");
 
 //modal inputs
 let addTaskBtn = document.getElementById("addTaskBtn");
@@ -19,9 +29,9 @@ let dueDateInput = document.getElementById("dueDateInput");
 
 let tasks = [];
 
-console.log(dueDateInput);
 addTaskBtn.addEventListener("click", function (e) {
-    
+    let priority;
+    let cardColorClass;
     let taskObj = {
         "name": "",
         "description": "",
@@ -34,20 +44,35 @@ addTaskBtn.addEventListener("click", function (e) {
     taskObj["priority"] = taskPriorityInput.value;
     taskObj["dueDate"] = dueDateInput.value;
 
-    
+    console.log(taskObj["priority"])
+
+    switch(taskPriorityInput.value){
+        /*
+        Include corresponding colors as well!
+        To-Do
+        In Progress
+        Completed
+        */
+
+        case "1":
+            priority = todoColumn;
+            cardColorClass = "todoCard";
+            break;
+        case "2":
+            priority = inProgressColumn;
+            cardColorClass = "inProgressCard";
+            break;
+        case "3":
+            priority = completedColumn;
+            cardColorClass = "completedCard";
+            break;
+    }
+
+    createBlock(priority, cardColorClass, taskNameInput.value, taskDescription.value, dueDateInput.value);
 });
 
 
-
-//injection locations
-let todoColumn = document.getElementById("inject-to-do");
-let inProgressColumn = document.getElementById("inject-in-progress");
-let completedColumn = document.getElementById("inject-completed");
-
-//inject Modals
-let injectModals = document.getElementById("injectModals");
-
-const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, taskPriority, dueDate) => {
+const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, dueDate) => {
     //MODAL 1
 
     //Modal 1 outermost div
@@ -142,10 +167,10 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modalBodyRow3.className = "mb-3 row";
     modalBodyLabel3.className = "col-sm-3 col-form-label";
     modalBodyLabel3.innerHTML = "Priority:";
-    modalBodyLabel3.setAttribute("for", `${taskPriority}`);
+    modalBodyLabel3.setAttribute("for", "task-priority");
     modalBodyCol3.className = "col-sm-9";
     modalBodySelect3.className = "form-select";
-    modalBodySelect3.id = `${taskPriority}`;
+    modalBodySelect3.id = "task-priority";
     modalBodySelect3.setAttribute("aria-label", "Select a task priority");
     modalBodySelectThreeOption1.setAttribute("selected", "true");
     modalBodySelectThreeOption1.innerHTML = "Open this select menu";
@@ -154,7 +179,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modalBodySelectThreeOption3.setAttribute("value", "2");
     modalBodySelectThreeOption3.innerHTML = "In Progress";
     modalBodySelectThreeOption4.setAttribute("value", "3");
-    modalBodySelectThreeOption4.innerHTML = "High";
+    modalBodySelectThreeOption4.innerHTML = "Completed";
 
     //styling for the fourth row
     modalBodyRow4.className = "mb-2 row";
@@ -366,7 +391,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     injectModals.appendChild(modal2OutermostDiv);
 };
 
-createBlock(todoColumn, "todoCard", "TaskTrackerProject", "Work on the Task tracker", "High", "10/10/21");
+createBlock(inProgressColumn, "inProgressCard", "TaskTrackerProject", "Work on the Task tracker", "10/10/21");
 
 // injectionLocation,
 //     cardType,
