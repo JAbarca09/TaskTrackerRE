@@ -4,9 +4,6 @@ button does not open the modal. You have to fix the modal so that once the "Task
 pressed the modal for its corresponding task opens!
 */
 
-//My Js is connected!
-console.log("Hello World");
-
 //injection locations
 let todoColumn = document.getElementById("inject-to-do");
 let inProgressColumn = document.getElementById("inject-in-progress");
@@ -205,6 +202,25 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     modal1SubDiv2.appendChild(modal1Footer);
 
     //----------------------------------------------------------------------------------------------------------------
+    //MODAL 2 TASK DETAILS
+
+    //modal outermost div
+    let modal2OutermostDiv = document.createElement("div");
+
+    //subdiv of outermost div
+    let modal2SubDiv2 = document.createElement("div");
+
+    modal2OutermostDiv.className = 'modal fade';
+    modal2OutermostDiv.id = "ViewTask" + taskTitle;
+    modal2OutermostDiv.setAttribute('tabindex', '-1');
+    modal2OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
+    modal2OutermostDiv.setAttribute('aria-hidden', 'true');
+
+    //styling for subDiv2 from outermost div
+    modal2SubDiv2.className = 'modal-dialog';
+
+
+    //----------------------------------------------------------------------------------------------------------------
 
     //CREATE ELEMENTS FOR THE CARDS
     let outermostDiv = document.createElement("div");
@@ -244,6 +260,8 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row3Div3.className = "col-12 d-flex justify-content-center";
     row3DivBtn2.className = "btn btn-dark cardBtns";
     row3DivBtn2.innerHTML = "View Task";
+    row3DivBtn2.setAttribute('data-bs-target', "#ViewTask" + taskTitle)
+    row3DivBtn2.setAttribute('data-bs-toggle', "modal")
 
     //append everything together
     outermostDiv.appendChild(row1);
@@ -265,11 +283,11 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     injectionLocation.appendChild(outermostDiv);
     //inject the modal as well
     injectModals.appendChild(modal1OutermostDiv);
- };
+};
 
 createBlock(todoColumn, 'todoCard', 'TaskTrackerProject', 'Work on the Task tracker', 'High', '10/10/21');
 
-// 
+
 
 // injectionLocation,
 //     cardType,
@@ -327,5 +345,25 @@ createBlock(todoColumn, 'todoCard', 'TaskTrackerProject', 'Work on the Task trac
         </div>
     </div>
 </div>
+</div>
+*/
+
+//simple modal to inject data into!
+/*
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 */
