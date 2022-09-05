@@ -1,15 +1,16 @@
 import { hi } from './localStorage.js';
 /*
     UPDATE: 09/04/2022
-    I added the modals when creating elements and want to start adding functionality to the add task button!
-*/
+    Start working on the functionality of the application when the user adds a task, create an element
+    by calling the function. Additionally work on a solution for the local storage, I think an array
+    of objects seems to be a feasible solution if its possible with local stroage!
 
-/*
-BUGS:
-1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
+    BUGS:
+    1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
 
-Additional Things to consider:
+    Additional Things to consider:
     1. When you view task show the date!
+    2. Delete task button on the cards themselves we cannot remove tasks as of currently!
 */
 
 //injection card column locations
@@ -67,6 +68,8 @@ addTaskBtn.addEventListener("click", function (e) {
             cardColorClass = "completedCard";
             break;
     }
+
+    //save the task to local storage!
 
     createBlock(priority, cardColorClass, taskNameInput.value, taskDescription.value, dueDateInput.value);
 });
