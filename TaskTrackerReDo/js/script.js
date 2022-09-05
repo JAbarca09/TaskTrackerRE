@@ -10,7 +10,7 @@ let inProgressColumn = document.getElementById("inject-in-progress");
 let completedColumn = document.getElementById("inject-completed");
 
 //inject Modals
-let injectModals = document.getElementById('injectModals');
+let injectModals = document.getElementById("injectModals");
 
 //btns
 let addTaskBtn = document.getElementById("add-task-btn");
@@ -19,30 +19,30 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     //MODAL 1
 
     //Modal 1 outermost div
-    let modal1OutermostDiv = document.createElement('div');
+    let modal1OutermostDiv = document.createElement("div");
 
     //Modal 1 subdiv 1 from outermost div
-    let modal1SubDiv1 = document.createElement('div');
+    let modal1SubDiv1 = document.createElement("div");
 
     //Modal 1 subdiv 2 from outermost div
-    let modal1SubDiv2 = document.createElement('div');
+    let modal1SubDiv2 = document.createElement("div");
 
     //Modal body
-    let modalBody = document.createElement('div');
-    let modalBodyForm = document.createElement('form');
+    let modalBody = document.createElement("div");
+    let modalBodyForm = document.createElement("form");
 
     //styling for modal 1 outermost div
-    modal1OutermostDiv.className = 'modal fade';
+    modal1OutermostDiv.className = "modal fade";
     modal1OutermostDiv.id = taskTitle;
-    modal1OutermostDiv.setAttribute('tabindex', '-1');
-    modal1OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
-    modal1OutermostDiv.setAttribute('aria-hidden', 'true');
+    modal1OutermostDiv.setAttribute("tabindex", "-1");
+    modal1OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
+    modal1OutermostDiv.setAttribute("aria-hidden", "true");
 
     //styling for subDiv1 from outermost div
-    modal1SubDiv1.className = 'modal-dialog';
+    modal1SubDiv1.className = "modal-dialog";
 
     //styling for subDiv2 from outermost div
-    modal1SubDiv2.className = 'modal-content';
+    modal1SubDiv2.className = "modal-content";
 
     //styling for the modal body
     modalBody.className = "modal-body";
@@ -208,17 +208,29 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     let modal2OutermostDiv = document.createElement("div");
 
     //subdiv of outermost div
+    let modal2SubDiv1 = document.createElement("div");
+
+    //modal-content div
     let modal2SubDiv2 = document.createElement("div");
 
-    modal2OutermostDiv.className = 'modal fade';
+    //modal header
+    let modal2Header2 = document.createElement("div");
+    let modal2HeaderTitle = document.createElement("h5");
+
+    modal2OutermostDiv.className = "modal fade";
     modal2OutermostDiv.id = "ViewTask" + taskTitle;
-    modal2OutermostDiv.setAttribute('tabindex', '-1');
-    modal2OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
-    modal2OutermostDiv.setAttribute('aria-hidden', 'true');
+    modal2OutermostDiv.setAttribute("tabindex", "-1");
+    modal2OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
+    modal2OutermostDiv.setAttribute("aria-hidden", "true");
 
-    //styling for subDiv2 from outermost div
-    modal2SubDiv2.className = 'modal-dialog';
+    modal2SubDiv1.className = "modal-dialog";
 
+    modal2SubDiv2.className = "modal-content";
+
+    //modal header styling
+    modal2Header2.className = "modal-header";
+    modal2HeaderTitle.className = "modal-title";
+    modal2HeaderTitle.innerHTML = "Task Details"
 
     //----------------------------------------------------------------------------------------------------------------
 
@@ -252,16 +264,16 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     row2Div2.className = "col-12 d-flex justify-content-center";
     row2DivBtn.className = "btn btn-primary cardBtns";
     row2DivBtn.innerHTML = "Task Options";
-    row2DivBtn.setAttribute('data-bs-target', "#" + taskTitle)
-    row2DivBtn.setAttribute('data-bs-toggle', "modal")
+    row2DivBtn.setAttribute("data-bs-target", "#" + taskTitle)
+    row2DivBtn.setAttribute("data-bs-toggle", "modal")
 
     //styling for the third row
     row3.className = "row mt-2 pb-3";
     row3Div3.className = "col-12 d-flex justify-content-center";
     row3DivBtn2.className = "btn btn-dark cardBtns";
     row3DivBtn2.innerHTML = "View Task";
-    row3DivBtn2.setAttribute('data-bs-target', "#ViewTask" + taskTitle)
-    row3DivBtn2.setAttribute('data-bs-toggle', "modal")
+    row3DivBtn2.setAttribute("data-bs-target", "#ViewTask" + taskTitle)
+    row3DivBtn2.setAttribute("data-bs-toggle", "modal")
 
     //append everything together
     outermostDiv.appendChild(row1);
@@ -285,7 +297,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, ta
     injectModals.appendChild(modal1OutermostDiv);
 };
 
-createBlock(todoColumn, 'todoCard', 'TaskTrackerProject', 'Work on the Task tracker', 'High', '10/10/21');
+createBlock(todoColumn, "todoCard", "TaskTrackerProject", "Work on the Task tracker", "High", "10/10/21");
 
 
 
