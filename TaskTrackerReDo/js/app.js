@@ -1,5 +1,7 @@
+import { hi } from './localStorage.js';
 /*
-
+    UPDATE: 09/04/2022
+    I added the modals when creating elements and want to start adding functionality to the add task button!
 */
 
 /*
@@ -8,6 +10,35 @@ BUGS:
 
 */
 
+//modal inputs
+let addTaskBtn = document.getElementById("addTaskBtn");
+let taskNameInput = document.getElementById("taskName");
+let taskDescriptionInput = document.getElementById("taskDescription");
+let taskPriorityInput = document.getElementById("taskPriority");
+let dueDateInput = document.getElementById("dueDateInput");
+
+let tasks = [];
+
+console.log(dueDateInput);
+addTaskBtn.addEventListener("click", function (e) {
+    
+    let taskObj = {
+        "name": "",
+        "description": "",
+        "priority": "",
+        "dueDate": ""
+    }
+
+    taskObj["name"] = taskNameInput.value;
+    taskObj["description"] = taskDescriptionInput.value;
+    taskObj["priority"] = taskPriorityInput.value;
+    taskObj["dueDate"] = dueDateInput.value;
+
+    
+});
+
+
+
 //injection locations
 let todoColumn = document.getElementById("inject-to-do");
 let inProgressColumn = document.getElementById("inject-in-progress");
@@ -15,9 +46,6 @@ let completedColumn = document.getElementById("inject-completed");
 
 //inject Modals
 let injectModals = document.getElementById("injectModals");
-
-//btns
-let addTaskBtn = document.getElementById("add-task-btn");
 
 const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, taskPriority, dueDate) => {
     //MODAL 1
