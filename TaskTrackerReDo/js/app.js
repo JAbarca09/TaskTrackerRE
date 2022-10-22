@@ -11,7 +11,10 @@ import { hi } from './localStorage.js';
     Additional Things to consider:
     1. When you view task show the date!
     2. Delete task button on the cards themselves we cannot remove tasks as of currently!
-*/
+
+    UPDATE 10/22/22
+    When an element is created I got the created card's second modal to open!
+    */
 
 //injection card column locations
 let todoColumn = document.getElementById("inject-to-do");
@@ -153,7 +156,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modalLabelRow1.innerHTML = "Name:";
     modalLabelRow1.setAttribute("for", ``);
     modalInputRow1.className = "form-control";
-    modalInputRow1.id = `${taskTitle}`;
+    modalInputRow1.id = `${taskTitle}Row`;
     modalInputRow1.setAttribute("type", "text");
 
     //styling for the second row
