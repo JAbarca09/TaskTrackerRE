@@ -7,6 +7,7 @@ import { hi } from './localStorage.js';
 
     BUGS:
     1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
+    2. Tasks with the same name can exist and that breaks stuff ie opening modals
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
@@ -78,8 +79,11 @@ addTaskBtn.addEventListener("click", function (e) {
 });
 
 
+
 const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, dueDate) => {
     //MODAL 1
+    const REVISEDtaskTitle = modalNameFix(taskTitle);
+    console.log(REVISEDtaskTitle);
 
     //Modal 1 outermost div
     let modal1OutermostDiv = document.createElement("div");
@@ -96,7 +100,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //styling for modal 1 outermost div
     modal1OutermostDiv.className = "modal fade";
-    modal1OutermostDiv.id = taskTitle;
+    modal1OutermostDiv.id = REVISEDtaskTitle;
     modal1OutermostDiv.setAttribute("tabindex", "-1");
     modal1OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
     modal1OutermostDiv.setAttribute("aria-hidden", "true");
@@ -290,7 +294,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     let modal2FooterBtn = document.createElement("button");
 
     modal2OutermostDiv.className = "modal fade";
-    modal2OutermostDiv.id = "ViewTask" + taskTitle;
+    modal2OutermostDiv.id = "ViewTask" + REVISEDtaskTitle;
     modal2OutermostDiv.setAttribute("tabindex", "-1");
     modal2OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
     modal2OutermostDiv.setAttribute("aria-hidden", "true");
@@ -365,7 +369,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     row2Div2.className = "col-12 d-flex justify-content-center";
     row2DivBtn.className = "btn btn-primary cardBtns";
     row2DivBtn.innerHTML = "Task Options";
-    row2DivBtn.setAttribute("data-bs-target", "#" + taskTitle)
+    row2DivBtn.setAttribute("data-bs-target", "#" + REVISEDtaskTitle)
     row2DivBtn.setAttribute("data-bs-toggle", "modal")
 
     //styling for the third row
@@ -373,7 +377,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     row3Div3.className = "col-12 d-flex justify-content-center";
     row3DivBtn2.className = "btn btn-dark cardBtns";
     row3DivBtn2.innerHTML = "View Task";
-    row3DivBtn2.setAttribute("data-bs-target", "#ViewTask" + taskTitle)
+    row3DivBtn2.setAttribute("data-bs-target", "#ViewTask" + REVISEDtaskTitle)
     row3DivBtn2.setAttribute("data-bs-toggle", "modal")
 
     //append everything together
@@ -398,11 +402,22 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //inject the modals as well
     injectModals.appendChild(modal1OutermostDiv);
     injectModals.appendChild(modal2OutermostDiv);
-
-    console.log(dueDate);
 };
 
-createBlock(inProgressColumn, "inProgressCard", "TaskTrackerProject", "Work on the Task tracker", "10/10/21");
+const modalNameFix = (taskTitle) => {
+    let newTitle = "";
+    let taskWordsArr = [];
+    taskWordsArr = taskTitle.split(' ');
+    if(taskWordsArr.length > 1){
+        newTitle = taskWordsArr.join(" ").replace(/ /g,''); //the replace removes any white space in the words
+    } else {
+        newTitle = taskTitle;
+    }
+    return newTitle;
+}
+
+
+createBlock(inProgressColumn, "inProgressCard", "Task Tracker   Project", "Work on the Task tracker", "10/10/21");
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
