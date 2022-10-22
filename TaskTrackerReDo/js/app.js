@@ -9,11 +9,11 @@ import { hi } from './localStorage.js';
     1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
 
     Additional Things to consider:
-    1. When you view task show the date!
-    2. Delete task button on the cards themselves we cannot remove tasks as of currently!
+    1. Delete task button on the cards themselves we cannot remove tasks as of currently!
 
     UPDATE 10/22/22
     When an element is created I got the created card's second modal to open!
+    Display the due date on the "View Task Button"
     */
 
 //injection card column locations
@@ -283,6 +283,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //modal body declarations
     let modal2Body = document.createElement("div");
     let modal2BodyText = document.createElement("p");
+    let modal2BodyDueDate = document.createElement("p");
 
     //modal footer declarations
     let modal2Footer = document.createElement("div");
@@ -306,6 +307,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //modal body styling
     modal2Body.className = "modal-body";
     modal2BodyText.innerHTML = taskDescription;
+    modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
 
     //modal footer styling
     modal2Footer.className = "modal-footer";
@@ -319,6 +321,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //appending the modal body together
     modal2Body.appendChild(modal2BodyText);
+    modal2Body.appendChild(modal2BodyDueDate);
 
     //appending the modal footer together
     modal2Footer.appendChild(modal2FooterBtn);
@@ -395,11 +398,13 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //inject the modals as well
     injectModals.appendChild(modal1OutermostDiv);
     injectModals.appendChild(modal2OutermostDiv);
+
+    console.log(dueDate);
 };
 
 createBlock(inProgressColumn, "inProgressCard", "TaskTrackerProject", "Work on the Task tracker", "10/10/21");
 
-// injectionLocation,
+// injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
 //     taskTitle,
 //     taskDescription,
