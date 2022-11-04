@@ -6,8 +6,8 @@ import { hi } from './localStorage.js';
     of objects seems to be a feasible solution if its possible with local stroage!
 
     BUGS:
-    1. Modals dont work when the task is longer that one word: Ex. TaskTrackerProject vs Task Tracker Project
-    2. Tasks with the same name can exist and that breaks stuff ie opening modals
+    1. Tasks with the same name can exist and that breaks stuff ie: opening modals
+    2. Tasks can have a past date, limit it to only the present and future dates
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
@@ -15,6 +15,7 @@ import { hi } from './localStorage.js';
     UPDATE 10/22/22
     When an element is created I got the created card's second modal to open!
     Display the due date on the "View Task Button"
+    Got the modals to work when a task is longer than one word!
     */
 
 //injection card column locations
