@@ -297,6 +297,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //modal header
     let modal2Header2 = document.createElement("div");
     let modal2HeaderTitle = document.createElement("h5");
+    let modal2CloseModalBtn = document.createElement("button");
 
     //modal body declarations
     let modal2Body = document.createElement("div");
@@ -321,6 +322,10 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modal2Header2.className = "modal-header";
     modal2HeaderTitle.className = "modal-title";
     modal2HeaderTitle.innerHTML = "Task Details";
+    modal2CloseModalBtn.className = "btn-close";
+    modal2CloseModalBtn.setAttribute("type", "button");
+    modal2CloseModalBtn.setAttribute("data-bs-dismiss", "modal");
+    modal2CloseModalBtn.setAttribute("aria-label", "Close");
 
     //modal body styling
     modal2Body.className = "modal-body";
@@ -336,6 +341,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //appending the modal header together
     modal2Header2.appendChild(modal2HeaderTitle);
+    modal2Header2.appendChild(modal2CloseModalBtn);
 
     //appending the modal body together
     modal2Body.appendChild(modal2BodyText);
