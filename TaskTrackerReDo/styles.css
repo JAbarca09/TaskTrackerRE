@@ -75,5 +75,7 @@ h1{
     padding-right: 5%;
 }
 
-
 /* Id Selectors */
+#TaskOptionsModalFooter {
+    justify-content: space-between;
+}

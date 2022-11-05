@@ -1,4 +1,4 @@
-import {hi} from './localStorage.js';
+import { hi } from './localStorage.js';
 
 /*
     UPDATE: 09/04/2022
@@ -60,7 +60,7 @@ addTaskBtn.addEventListener("click", function (e) {
 
     console.log(taskObj["priority"])
 
-    switch(taskPriorityInput.value){
+    switch (taskPriorityInput.value) {
         /*
         Include corresponding colors as well!
         To-Do
@@ -223,6 +223,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //styling for the modal 1 footer
     modal1Footer.className = "modal-footer";
+    modal1Footer.id = "TaskOptionsModalFooter"
     modal1FooterDeleteBtn.className = "btn btn-danger";
     modal1FooterDeleteBtn.innerHTML = "Delete Task";
     //close the modal after deleting the task!
@@ -428,8 +429,8 @@ const modalNameFix = (taskTitle) => {
     let newTitle = "";
     let taskWordsArr = [];
     taskWordsArr = taskTitle.split(' ');
-    if(taskWordsArr.length > 1){
-        newTitle = taskWordsArr.join(" ").replace(/ /g,''); //the replace removes any white space in the words
+    if (taskWordsArr.length > 1) {
+        newTitle = taskWordsArr.join(" ").replace(/ /g, ''); //the replace removes any white space in the words
     } else {
         newTitle = taskTitle;
     }
