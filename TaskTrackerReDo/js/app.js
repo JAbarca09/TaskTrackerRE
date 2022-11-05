@@ -12,12 +12,11 @@ import { hi } from './localStorage.js';
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
-        a. functionality for deleting cards! for now remove from the DOM
+        a. functionality for deleting cards and modals! for now remove from the DOM
 
-    UPDATE 10/22/22
-    When an element is created I got the created card's second modal to open!
-    Display the due date on the "View Task Button"
-    Got the modals to work when a task is longer than one word!
+    UPDATE 11/4/22
+    Added a delete button to task options
+    working on delete button functionality, removing card and modals from the DOM they need updated Ids which causes the modals to need updated targets as well!
     */
 
 //injection card column locations
@@ -454,6 +453,8 @@ const modalNameFix = (taskTitle) => {
 
 
 createBlock(inProgressColumn, "inProgressCard", "Task Tracker   Project", "Work on the Task tracker", "11/04/22");
+createBlock(todoColumn, "todoCard", "Title", "Work on the Task tracker", "11/04/22");
+createBlock(completedColumn, "completedCard", "Another Project", "Work on the Task tracker", "11/04/22");
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
