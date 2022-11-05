@@ -1,4 +1,5 @@
-import { hi } from './localStorage.js';
+import {hi} from './localStorage.js';
+
 /*
     UPDATE: 09/04/2022
     Start working on the functionality of the application when the user adds a task, create an element
@@ -16,7 +17,6 @@ import { hi } from './localStorage.js';
     When an element is created I got the created card's second modal to open!
     Display the due date on the "View Task Button"
     Got the modals to work when a task is longer than one word!
-    Set the minimum for the DueDateInput and the calendar input inside cards! DONT FORGET
     */
 
 //injection card column locations
@@ -159,6 +159,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //Modal1 footer
     let modal1Footer = document.createElement("div");
+    let modal1FooterDeleteBtn = document.createElement("button");
     let modal1FooterCloseBtn1 = document.createElement("button");
     let modal1FooterCloseBtn2 = document.createElement("button");
 
@@ -223,6 +224,14 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //styling for the modal 1 footer
     modal1Footer.className = "modal-footer";
+    modal1FooterDeleteBtn.className = "btn btn-danger";
+    modal1FooterDeleteBtn.innerHTML = "Delete Task";
+    //close the modal after deleting the task!
+    //remove the elements: both the card and the modal from the DOM!
+    //add the button first to the DOM
+    modal1FooterDeleteBtn.setAttribute("data-bs-dismiss", "modal"); //dismisses the modal
+    modal1FooterDeleteBtn.setAttribute("type", "button");
+
     modal1FooterCloseBtn1.className = "btn btn-secondary";
     modal1FooterCloseBtn1.setAttribute("data-bs-dismiss", "modal");
     modal1FooterCloseBtn1.setAttribute("type", "button");
@@ -260,6 +269,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modal1Header.appendChild(modal1HeaderCloseBtn);
 
     //putting the modal footer together
+    modal1Footer.appendChild(modal1FooterDeleteBtn);
     modal1Footer.appendChild(modal1FooterCloseBtn1);
     modal1Footer.appendChild(modal1FooterCloseBtn2);
 
@@ -427,7 +437,7 @@ const modalNameFix = (taskTitle) => {
 }
 
 
-createBlock(inProgressColumn, "inProgressCard", "Task Tracker   Project", "Work on the Task tracker", "10/10/21");
+createBlock(inProgressColumn, "inProgressCard", "Task Tracker   Project", "Work on the Task tracker", "11/04/22");
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
