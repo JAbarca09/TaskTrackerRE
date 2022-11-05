@@ -160,7 +160,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //Modal1 footer
     let modal1Footer = document.createElement("div");
     let modal1FooterDeleteBtn = document.createElement("button");
-    let modal1FooterCloseBtn1 = document.createElement("button");
     let modal1FooterCloseBtn2 = document.createElement("button");
 
     //styling for the first row
@@ -232,10 +231,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modal1FooterDeleteBtn.setAttribute("data-bs-dismiss", "modal"); //dismisses the modal
     modal1FooterDeleteBtn.setAttribute("type", "button");
 
-    modal1FooterCloseBtn1.className = "btn btn-secondary";
-    modal1FooterCloseBtn1.setAttribute("data-bs-dismiss", "modal");
-    modal1FooterCloseBtn1.setAttribute("type", "button");
-    modal1FooterCloseBtn1.innerHTML = "Close";
     modal1FooterCloseBtn2.className = "btn btn-primary";
     modal1FooterCloseBtn2.setAttribute("type", "button");
     modal1FooterCloseBtn2.innerHTML = "Save Changes";
@@ -270,7 +265,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
 
     //putting the modal footer together
     modal1Footer.appendChild(modal1FooterDeleteBtn);
-    modal1Footer.appendChild(modal1FooterCloseBtn1);
     modal1Footer.appendChild(modal1FooterCloseBtn2);
 
     //Putting the modal BODY TOGETHER
