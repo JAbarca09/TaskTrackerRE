@@ -16,7 +16,7 @@ import { hi } from './localStorage.js';
     When an element is created I got the created card's second modal to open!
     Display the due date on the "View Task Button"
     Got the modals to work when a task is longer than one word!
-    Set the minimum for the DueDateInput and the calendar input inside cards!
+    Set the minimum for the DueDateInput and the calendar input inside cards! DONT FORGET
     */
 
 //injection card column locations
@@ -208,6 +208,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modalBodyCol4.className = "col-sm-9";
     modalBodyInputRow4.className = "calendarInput";
     modalBodyInputRow4.id = "dueDate";
+    modalBodyInputRow4.min = result;
     modalBodyInputRow4.setAttribute("type", "date");
 
     //styling for the modal 1 header
