@@ -12,6 +12,7 @@ import { hi } from './localStorage.js';
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
+        a. functionality for deleting cards! for now remove from the DOM
 
     UPDATE 10/22/22
     When an element is created I got the created card's second modal to open!
@@ -38,8 +39,6 @@ let dueDateInput = document.getElementById("dueDateInput");
 //set dueDateInput minimum to be in YYYY-MM-DD format to set the minimum for the dueDateInput dont forget calendar Input as well!
 const result = new Date().toLocaleDateString('sv');
 dueDateInput.min = result;
-console.log(dueDateInput.min);
-
 
 let tasks = [];
 
@@ -92,7 +91,6 @@ addTaskBtn.addEventListener("click", function (e) {
 const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, dueDate) => {
     //MODAL 1
     const REVISEDtaskTitle = modalNameFix(taskTitle);
-    console.log(REVISEDtaskTitle);
 
     //Modal 1 outermost div
     let modal1OutermostDiv = document.createElement("div");
@@ -215,7 +213,7 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     modal1Header.className = "modal-header";
     modal1HeaderTitle.className = "modal-title";
     modal1HeaderTitle.id = "exampleModalLabel";
-    modal1HeaderTitle.innerHTML = "Add Task";
+    modal1HeaderTitle.innerHTML = "Edit Task";
     modal1HeaderCloseBtn.className = "btn-close";
     modal1HeaderCloseBtn.setAttribute("type", "button");
     modal1HeaderCloseBtn.setAttribute("data-bs-dismiss", "modal");
@@ -423,6 +421,23 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     //inject the modals as well
     injectModals.appendChild(modal1OutermostDiv);
     injectModals.appendChild(modal2OutermostDiv);
+
+
+
+
+
+
+    //functionality for the buttons
+    modal1FooterDeleteBtn.addEventListener("click", function(){
+        console.log("Delete the card and the modals from the DOM and eventually local storage");
+        
+        /*target parent nodes of both the card and the modals! 3 things need to get deleted
+        card
+        task options modal
+        view task modal
+        local storage
+        */
+    });
 };
 
 const modalNameFix = (taskTitle) => {
