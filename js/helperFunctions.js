@@ -1,9 +1,13 @@
 // Add functions needed for data validation here!
 
 const checkIfInputEmpty = (input) => {
-    const enteredInput = input.trim() === "";
-    return enteredInput;
+  const isValidInput = input.trim() !== "";
+  return isValidInput;
 };
 
+const checkIfPriorityIsValid = (input) => {
+  const isValidPriority = input !== "Open this select menu";
+  return isValidPriority;
+};
 
-export { checkIfEmpty }
+export { checkIfInputEmpty, checkIfPriorityIsValid };
