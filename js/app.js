@@ -9,6 +9,8 @@ import { saveTaskToLocalStorage } from "./localStorage.js";
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
+    3. When task name starts with a number, the first modal when accessed by "Task Options" btn does not work
+        ERROR: failed to execute 'querySelector' on 'Document': '#1' (number) is not a valid selector.
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
