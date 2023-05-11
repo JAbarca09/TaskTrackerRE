@@ -4,11 +4,13 @@ import { saveTaskToLocalStorage } from "./localStorage.js";
     UPDATE: 09/04/2022
     Start working on the functionality of the application when the user adds a task, create an element
     by calling the function. Additionally work on a solution for the local storage, I think an array
-    of objects seems to be a feasible solution if its possible with local stroage!
+    of objects seems to be a feasible solution if its possible with local storage!
 
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
+    3. When creating tasks, the task form can be submitted incorrectly needs data validation!
+        a. This also needs to occur for newly generated tasks, forms for them can also be submitted incorrectly!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
