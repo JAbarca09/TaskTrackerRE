@@ -1,81 +1,80 @@
 /* Main Selectors */
-body{
-    background-color: rgb(16, 56, 109);
-    color: white;
+body {
+  background-color: rgb(16, 56, 109);
+  color: white;
 }
 
-h1{
-    font-size: 36px;
+h1 {
+  font-size: 36px;
 }
-
 
 /* Class Selectors */
-.task-container{
-    background-color:  rgb(8, 29, 57); 
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-    border-radius: 20px;
+.task-container {
+  background-color: rgb(8, 29, 57);
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border-radius: 20px;
 }
 
-.headingRow{
-    background-color: white;
-    color: black;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+.headingRow {
+  background-color: white;
+  color: black;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-.modal{
-    color: black;
+.modal {
+  color: black;
 }
 
-.todoCard{
-    background-color: #910303;
-    min-height: 150px;
-    border-radius: 20px;
+.todoCard {
+  background-color: #910303;
+  min-height: 150px;
+  border-radius: 20px;
 }
 
-.inProgressCard{
-    background-color: #7a6905;
-    min-height: 150px;
-    border-radius: 20px;
+.inProgressCard {
+  background-color: #7a6905;
+  min-height: 150px;
+  border-radius: 20px;
 }
 
-.completedCard{
-    background-color: #466c08;
-    min-height: 150px;
-    border-radius: 20px;
+.completedCard {
+  background-color: #466c08;
+  min-height: 150px;
+  border-radius: 20px;
 }
 
-.taskTitle{
-    font-size: 30px;
+.taskTitle {
+  font-size: 30px;
 }
 
-.cardBtns{
-    width: 80%;
+.cardBtns {
+  width: 80%;
 }
 
-.bgOrange{
-    background-color: orange;
-    /* height: 50px;
+.bgOrange {
+  background-color: orange;
+  /* height: 50px;
     width: 50px; */
 }
 
-.bgGreen{
-    background-color: green;
-    /* height: 50px;
+.bgGreen {
+  background-color: green;
+  /* height: 50px;
     width: 50px; */
 }
 
-.calendarInput{
-    width: auto;
-    height: 40px;
-    border: 1px solid #ced4da;
-    padding-left: 5%;
-    padding-right: 5%;
+.calendarInput {
+  width: auto;
+  height: 40px;
+  border: 1px solid #ced4da;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 /* Id Selectors */
 #TaskOptionsModalFooter {
-    justify-content: space-between;
+  justify-content: space-between;
 }
