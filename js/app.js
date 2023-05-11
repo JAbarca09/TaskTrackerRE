@@ -1,4 +1,4 @@
-import { hi } from './localStorage.js';
+import { saveTaskToLocalStorage } from './localStorage.js';
 
 /*
     UPDATE: 09/04/2022
@@ -56,7 +56,7 @@ addTaskBtn.addEventListener("click", function (e) {
     taskObj["priority"] = taskPriorityInput.value;
     taskObj["dueDate"] = dueDateInput.value;
 
-    console.log(taskObj["priority"])
+    console.log(taskObj["priority"]);
 
     switch (taskPriorityInput.value) {
         /*
@@ -81,7 +81,7 @@ addTaskBtn.addEventListener("click", function (e) {
     }
 
     //save the task to local storage!
-
+    saveTaskToLocalStorage(taskObj);
     createBlock(priority, cardColorClass, taskNameInput.value, taskDescription.value, dueDateInput.value);
 });
 
@@ -422,10 +422,6 @@ const createBlock = (injectionLocation, cardType, taskTitle, taskDescription, du
     injectModals.appendChild(modal2OutermostDiv);
 
 
-
-
-
-
     //functionality for the buttons
     modal1FooterDeleteBtn.addEventListener("click", function(){
         console.log("Delete the card and the modals from the DOM and eventually local storage");
@@ -451,7 +447,7 @@ const modalNameFix = (taskTitle) => {
     return newTitle;
 }
 
-
+// Calls to create cards
 createBlock(inProgressColumn, "inProgressCard", "Task Tracker   Project", "Work on the Task tracker", "11/04/22");
 createBlock(todoColumn, "todoCard", "Title", "Work on the Task tracker", "11/04/22");
 createBlock(completedColumn, "completedCard", "Another Project", "Work on the Task tracker", "11/04/22");
