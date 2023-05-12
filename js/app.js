@@ -10,6 +10,10 @@ import {
     by calling the function. Additionally work on a solution for the local storage, I think an array
     of objects seems to be a feasible solution if its possible with local storage!
 
+    TODO
+    1. When editing task the task name, description, due date, and priority should be pulled
+    2. If edits to a task are made they should be reflected in local storage and on the DOM
+
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
