@@ -19,6 +19,7 @@ import {
     2. Tasks can have a past date, limit it to only the present and future dates
     FIXME
     3. When creating tasks, the task form can be submitted incorrectly needs data validation!
+    4. When a task is created from the Add task button, a message should appear that a task was created!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
@@ -96,12 +97,12 @@ addTaskBtn.addEventListener("click", function (e) {
     return;
   }
 
-  let priority;
+  let injectionLocation;
   let cardColorClass;
   let taskObj = {
     name: "",
     description: "",
-    priority: "",
+    injectionLocation: "",
     dueDate: "",
   };
 
@@ -121,15 +122,15 @@ addTaskBtn.addEventListener("click", function (e) {
         */
 
     case "1":
-      priority = todoColumn;
+      injectionLocation = todoColumn;
       cardColorClass = "todoCard";
       break;
     case "2":
-      priority = inProgressColumn;
+      injectionLocation = inProgressColumn;
       cardColorClass = "inProgressCard";
       break;
     case "3":
-      priority = completedColumn;
+      injectionLocation = completedColumn;
       cardColorClass = "completedCard";
       break;
   }
@@ -137,7 +138,7 @@ addTaskBtn.addEventListener("click", function (e) {
   //save the task to local storage!
   saveTaskToLocalStorage(taskObj);
   createBlock(
-    priority,
+    injectionLocation,
     cardColorClass,
     taskNameInput.value,
     taskDescription.value,
@@ -152,6 +153,7 @@ const createBlock = (
   taskDescription,
   dueDate
 ) => {
+  
   //MODAL 1
   const REVISEDtaskTitle = modalNameFix(taskTitle);
 
@@ -250,7 +252,7 @@ const createBlock = (
   modalBodyLabel3.setAttribute("for", "task-priority");
   modalBodyCol3.className = "col-sm-9";
   modalBodySelect3.className = "form-select";
-  modalBodySelect3.id = "task-priority";
+  modalBodySelect3.id = `task-priority ${taskTitle}`;
   modalBodySelect3.setAttribute("aria-label", "Select a task priority");
   modalBodySelectThreeOption1.setAttribute("selected", "true");
   modalBodySelectThreeOption1.innerHTML = "Open this select menu";
@@ -296,6 +298,12 @@ const createBlock = (
   modal1FooterCloseBtn2.className = "btn btn-primary";
   modal1FooterCloseBtn2.setAttribute("type", "button");
   modal1FooterCloseBtn2.innerHTML = "Save Changes";
+
+  // TODO Content that should be inside the modal when opened!
+  modalInputRow1.value = taskTitle;
+  modalInputRow2.value = taskDescription;
+  // modalBodySelect3.text = modalBodySelectThreeOption1;
+  modalBodyInputRow4.value = dueDate;
 
   //putting the first modal row together
   modalBodyRow1.appendChild(modalLabelRow1);
@@ -513,27 +521,27 @@ const modalNameFix = (taskTitle) => {
 };
 
 // Calls to create cards
-createBlock(
-  inProgressColumn,
-  "inProgressCard",
-  "Task Tracker   Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  todoColumn,
-  "todoCard",
-  "Title",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  completedColumn,
-  "completedCard",
-  "Another Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
+// createBlock(
+//   inProgressColumn,
+//   "inProgressCard",
+//   "Task Tracker   Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   todoColumn,
+//   "todoCard",
+//   "Title",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   completedColumn,
+//   "completedCard",
+//   "Another Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
