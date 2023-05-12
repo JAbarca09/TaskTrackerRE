@@ -139,6 +139,7 @@ addTaskBtn.addEventListener("click", function (e) {
   saveTaskToLocalStorage(taskObj);
   createBlock(
     injectionLocation,
+    taskPriorityInput.value,
     cardColorClass,
     taskNameInput.value,
     taskDescription.value,
@@ -148,6 +149,7 @@ addTaskBtn.addEventListener("click", function (e) {
 
 const createBlock = (
   injectionLocation,
+  priority,
   cardType,
   taskTitle,
   taskDescription,
@@ -299,12 +301,6 @@ const createBlock = (
   modal1FooterCloseBtn2.setAttribute("type", "button");
   modal1FooterCloseBtn2.innerHTML = "Save Changes";
 
-  // TODO Content that should be inside the modal when opened!
-  modalInputRow1.value = taskTitle;
-  modalInputRow2.value = taskDescription;
-  // modalBodySelect3.text = modalBodySelectThreeOption1;
-  modalBodyInputRow4.value = dueDate;
-
   //putting the first modal row together
   modalBodyRow1.appendChild(modalLabelRow1);
   modalBodyRow1.appendChild(modalBodyCol1);
@@ -351,6 +347,12 @@ const createBlock = (
   modal1SubDiv2.appendChild(modal1Header);
   modal1SubDiv2.appendChild(modalBody);
   modal1SubDiv2.appendChild(modal1Footer);
+
+  //TODO Content that should be inside the modal when opened!
+  modalInputRow1.value = taskTitle;
+  modalInputRow2.value = taskDescription;
+  modalBodySelect3.value = priority;
+  modalBodyInputRow4.value = dueDate;
 
   //----------------------------------------------------------------------------------------------------------------
   //MODAL 2 TASK DETAILS
