@@ -13,15 +13,12 @@ import {
     TODO
     1. When editing task the task name, description, due date, and priority should be pulled
     2. If edits to a task are made they should be reflected in local storage and on the DOM
-    3. save tasks to local storage
-    4. remove tasks from the DOM and local storage
-    5. When web app is loaded load tasks from local storage
 
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
     FIXME
-    3. When editing tasks, the task form can be submitted incorrectly needs data validation!
+    3. When creating tasks, the task form can be submitted incorrectly needs data validation!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
@@ -99,12 +96,12 @@ addTaskBtn.addEventListener("click", function (e) {
     return;
   }
 
-  let priority;
+  let injectionLocation;
   let cardColorClass;
   let taskObj = {
     name: "",
     description: "",
-    priority: "",
+    injectionLocation: "",
     dueDate: "",
   };
 
@@ -124,15 +121,15 @@ addTaskBtn.addEventListener("click", function (e) {
         */
 
     case "1":
-      priority = todoColumn;
+      injectionLocation = todoColumn;
       cardColorClass = "todoCard";
       break;
     case "2":
-      priority = inProgressColumn;
+      injectionLocation = inProgressColumn;
       cardColorClass = "inProgressCard";
       break;
     case "3":
-      priority = completedColumn;
+      injectionLocation = completedColumn;
       cardColorClass = "completedCard";
       break;
   }
@@ -140,7 +137,8 @@ addTaskBtn.addEventListener("click", function (e) {
   //save the task to local storage!
   saveTaskToLocalStorage(taskObj);
   createBlock(
-    priority,
+    injectionLocation,
+    taskPriorityInput.value,
     cardColorClass,
     taskNameInput.value,
     taskDescription.value,
@@ -150,11 +148,13 @@ addTaskBtn.addEventListener("click", function (e) {
 
 const createBlock = (
   injectionLocation,
+  priority,
   cardType,
   taskTitle,
   taskDescription,
   dueDate
 ) => {
+  
   //MODAL 1
   const REVISEDtaskTitle = modalNameFix(taskTitle);
 
@@ -253,7 +253,7 @@ const createBlock = (
   modalBodyLabel3.setAttribute("for", "task-priority");
   modalBodyCol3.className = "col-sm-9";
   modalBodySelect3.className = "form-select";
-  modalBodySelect3.id = "task-priority";
+  modalBodySelect3.id = `task-priority ${taskTitle}`;
   modalBodySelect3.setAttribute("aria-label", "Select a task priority");
   modalBodySelectThreeOption1.setAttribute("selected", "true");
   modalBodySelectThreeOption1.innerHTML = "Open this select menu";
@@ -346,6 +346,11 @@ const createBlock = (
   modal1SubDiv2.appendChild(modal1Header);
   modal1SubDiv2.appendChild(modalBody);
   modal1SubDiv2.appendChild(modal1Footer);
+
+  modalInputRow1.value = taskTitle;
+  modalInputRow2.value = taskDescription;
+  modalBodySelect3.value = priority;
+  modalBodyInputRow4.value = dueDate;
 
   //----------------------------------------------------------------------------------------------------------------
   //MODAL 2 TASK DETAILS
@@ -516,27 +521,27 @@ const modalNameFix = (taskTitle) => {
 };
 
 // Calls to create cards
-createBlock(
-  inProgressColumn,
-  "inProgressCard",
-  "Task Tracker   Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  todoColumn,
-  "todoCard",
-  "Title",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  completedColumn,
-  "completedCard",
-  "Another Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
+// createBlock(
+//   inProgressColumn,
+//   "inProgressCard",
+//   "Task Tracker   Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   todoColumn,
+//   "todoCard",
+//   "Title",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   completedColumn,
+//   "completedCard",
+//   "Another Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
