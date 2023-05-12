@@ -78,3 +78,7 @@ h1 {
 #TaskOptionsModalFooter {
   justify-content: space-between;
 }
+
+.invalid {
+  color: red;
+}
