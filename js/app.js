@@ -15,7 +15,6 @@ import {
     2. Tasks can have a past date, limit it to only the present and future dates
     FIXME
     3. When creating tasks, the task form can be submitted incorrectly needs data validation!
-        a. This also needs to occur for newly generated tasks, forms for them can also be submitted incorrectly!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
