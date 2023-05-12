@@ -13,12 +13,15 @@ import {
     TODO
     1. When editing task the task name, description, due date, and priority should be pulled
     2. If edits to a task are made they should be reflected in local storage and on the DOM
+    3. save tasks to local storage
+    4. remove tasks from the DOM and local storage
+    5. When web app is loaded load tasks from local storage
 
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
     FIXME
-    3. When creating tasks, the task form can be submitted incorrectly needs data validation!
+    3. When editing tasks, the task form can be submitted incorrectly needs data validation!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
