@@ -1,4 +1,8 @@
 import { saveTaskToLocalStorage } from "./localStorage.js";
+import {
+  checkIfInputEmpty,
+  checkIfPriorityIsValid,
+} from "./helperFunctions.js";
 
 /*
     UPDATE: 09/04/2022
@@ -9,6 +13,7 @@ import { saveTaskToLocalStorage } from "./localStorage.js";
     BUGS:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals
     2. Tasks can have a past date, limit it to only the present and future dates
+    FIXME
     3. When creating tasks, the task form can be submitted incorrectly needs data validation!
         a. This also needs to occur for newly generated tasks, forms for them can also be submitted incorrectly!
 
@@ -36,6 +41,12 @@ let taskDescriptionInput = document.getElementById("taskDescription");
 let taskPriorityInput = document.getElementById("taskPriority");
 let dueDateInput = document.getElementById("dueDateInput");
 
+//error divs
+let taskNameError = document.getElementById("taskNameError");
+let taskDescriptionError = document.getElementById("taskDescriptionError");
+let dueDateInputError = document.getElementById("dueDateInputError");
+let taskPriorityError = document.getElementById("taskPriorityError");
+
 //set dueDateInput minimum to be in YYYY-MM-DD format to set the minimum for the dueDateInput dont forget calendar Input as well!
 const result = new Date().toLocaleDateString("sv");
 dueDateInput.min = result;
@@ -43,6 +54,45 @@ dueDateInput.min = result;
 let tasks = [];
 
 addTaskBtn.addEventListener("click", function (e) {
+  // FIXME Add data validation to add Task before submitted
+  const isNameValid = checkIfInputEmpty(taskNameInput.value);
+  const isDescriptionValid = checkIfInputEmpty(taskDescriptionInput.value);
+  const isDueDateValid = checkIfInputEmpty(dueDateInput.value);
+  const isValidPriority = checkIfPriorityIsValid(taskPriorityInput.value);
+
+  // remove errors
+  taskNameError.innerHTML = "";
+  taskDescriptionError.innerHTML = "";
+  dueDateInputError.innerHTML = "";
+  taskPriorityError.innerHTML = "";
+
+  //Data validate task before submitting it
+  if (
+    !isNameValid ||
+    !isDescriptionValid ||
+    !isDueDateValid ||
+    !isValidPriority
+  ) {
+    if (!isNameValid) {
+      taskNameError.innerHTML =
+        '<p class="mb-0 invalid">Enter a valid task name!</p>';
+    }
+    if (!isDescriptionValid) {
+      taskDescriptionError.innerHTML =
+        '<p class="mb-0 invalid">Enter a valid task description!</p>';
+    }
+    if (!isDueDateValid) {
+      dueDateInputError.innerHTML =
+        '<p class="mb-0 invalid">Enter a valid due date!</p>';
+    }
+    if (!isValidPriority) {
+      taskPriorityError.innerHTML =
+        '<p class="mb-0 invalid">Enter a valid task priority!</p>';
+    }
+    // stop the function from creating a task if there is an error
+    return;
+  }
+
   let priority;
   let cardColorClass;
   let taskObj = {
