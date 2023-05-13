@@ -1,4 +1,7 @@
-import { saveTaskToLocalStorage } from "./localStorage.js";
+import {
+  saveTaskToLocalStorage,
+  removeTaskFromLocalStorage,
+} from "./localStorage.js";
 import {
   checkIfInputEmpty,
   checkIfPriorityIsValid,
@@ -101,7 +104,7 @@ addTaskBtn.addEventListener("click", function (e) {
   let taskObj = {
     name: "",
     description: "",
-    injectionLocation: "",
+    priority: "",
     dueDate: "",
   };
 
@@ -109,8 +112,6 @@ addTaskBtn.addEventListener("click", function (e) {
   taskObj["description"] = taskDescriptionInput.value;
   taskObj["priority"] = taskPriorityInput.value;
   taskObj["dueDate"] = dueDateInput.value;
-
-  console.log(taskObj["priority"]);
 
   switch (taskPriorityInput.value) {
     /*
@@ -154,7 +155,13 @@ const createBlock = (
   taskDescription,
   dueDate
 ) => {
-  
+  const task = {
+    name: taskTitle,
+    description: taskDescription,
+    priority,
+    dueDate
+  };
+
   //MODAL 1
   const REVISEDtaskTitle = modalNameFix(taskTitle);
 
@@ -498,13 +505,15 @@ const createBlock = (
     console.log(
       "Delete the card and the modals from the DOM and eventually local storage"
     );
+    removeTaskFromLocalStorage(task);
 
-    /*target parent nodes of both the card and the modals! 3 things need to get deleted
-        card
-        task options modal
-        view task modal
-        local storage
-        */
+    /*
+    TODO
+    target parent nodes of both the card and the modals! 3 things need to get deleted
+    1. card
+    2. task options modal
+    3. view task modal
+    */
   });
 };
 
@@ -521,27 +530,27 @@ const modalNameFix = (taskTitle) => {
 };
 
 // Calls to create cards
-// createBlock(
-//   inProgressColumn,
-//   "inProgressCard",
-//   "Task Tracker   Project",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
-// createBlock(
-//   todoColumn,
-//   "todoCard",
-//   "Title",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
-// createBlock(
-//   completedColumn,
-//   "completedCard",
-//   "Another Project",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
+createBlock(
+  inProgressColumn,
+  "inProgressCard",
+  "Task Tracker   Project",
+  "Work on the Task tracker",
+  "11/04/22"
+);
+createBlock(
+  todoColumn,
+  "todoCard",
+  "Title",
+  "Work on the Task tracker",
+  "11/04/22"
+);
+createBlock(
+  completedColumn,
+  "completedCard",
+  "Another Project",
+  "Work on the Task tracker",
+  "11/04/22"
+);
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
