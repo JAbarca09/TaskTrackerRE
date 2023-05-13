@@ -522,16 +522,25 @@ const createBlock = (
   injectModals.appendChild(modal1OutermostDiv);
   injectModals.appendChild(modal2OutermostDiv);
 
-  //functionality for the buttons
+  //delete btn on task options
   modal1FooterDeleteBtn.addEventListener("click", function () {
-
     removeTaskFromLocalStorage(task);
 
     //remove card, view, and task options modal!
     outermostDiv.remove();
     modal1OutermostDiv.remove();
     modal2OutermostDiv.remove();
-   
+  });
+
+  //save changes btn on task options
+  modal1FooterCloseBtn2.addEventListener("click", function () {
+    //take the new changes of the card and save them to local storage
+    //Need to generate ids for tasks!
+    console.log(modalInputRow1.value);
+    console.log(modalInputRow1.value);
+    console.log(modalInputRow2.value);
+    console.log(modalBodySelect3.value);
+    console.log(modalBodyInputRow4.value);
   });
 };
 
