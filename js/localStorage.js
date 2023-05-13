@@ -1,4 +1,4 @@
- const saveTaskToLocalStorage = (task) => {
+const saveTaskToLocalStorage = (task) => {
   // get all tasks
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
   if (previousTasksArr !== null) {
@@ -14,9 +14,20 @@
 
 const removeTaskFromLocalStorage = (task) => {
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
-  const indexOfTask = previousTasksArr.indexOf(task);
-  previousTasksArr.splice(indexOfTask, 1);
-  localStorage.setItem("tasks", JSON.stringify(previousTasksArr));
+  console.log(task);
+  let indexOfTask = 1;
+  for (let i = 0; i <= previousTasksArr.length; i++) {
+    // FIXME names have to be unique, or alternatively generate ids for tasks instead
+    if (previousTasksArr[i].name === task.name) {
+      indexOfTask = i;
+      break;
+    }
+  }
+
+  if (indexOfTask !== -1) {
+    previousTasksArr.splice(indexOfTask, 1);
+    localStorage.setItem("tasks", JSON.stringify(previousTasksArr));
+  }
 };
 
 export { saveTaskToLocalStorage, removeTaskFromLocalStorage };
