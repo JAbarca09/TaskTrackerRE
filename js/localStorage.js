@@ -30,4 +30,26 @@ const removeTaskFromLocalStorage = (task) => {
   }
 };
 
-export { saveTaskToLocalStorage, removeTaskFromLocalStorage };
+// short random string for ids - not guaranteed to be unique
+const generateTaskId = function (length = 7) {
+  let randomId = Math.random()
+    .toString(36)
+    .substring(2, length + 2);
+
+  //check if the id is actually unique!
+  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+
+  if (previousTasksArr !== null) {
+    for (let i = 0; i < previousTasksArr.length; i++) {
+      if (previousTasksArr[i].id === randomId) {
+        i = 0;
+        randomId = Math.random()
+          .toString(36)
+          .substring(2, length + 2);
+      }
+    }
+  }
+  return randomId;
+};
+
+export { saveTaskToLocalStorage, removeTaskFromLocalStorage, generateTaskId };
