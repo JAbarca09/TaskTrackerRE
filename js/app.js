@@ -1,6 +1,7 @@
 import {
   saveTaskToLocalStorage,
   removeTaskFromLocalStorage,
+  generateTaskId
 } from "./localStorage.js";
 import {
   checkIfInputEmpty,
@@ -107,7 +108,10 @@ addTaskBtn.addEventListener("click", function (e) {
 
   let injectionLocation;
   let cardColorClass;
+  const taskId = generateTaskId();
+
   let taskObj = {
+    id: taskId,
     name: "",
     description: "",
     priority: "",
@@ -144,6 +148,7 @@ addTaskBtn.addEventListener("click", function (e) {
   //save the task to local storage!
   saveTaskToLocalStorage(taskObj);
   createBlock(
+    taskId,
     injectionLocation,
     taskPriorityInput.value,
     cardColorClass,
@@ -169,6 +174,7 @@ addTaskBtn.addEventListener("click", function (e) {
 });
 
 const createBlock = (
+  id,
   injectionLocation,
   priority,
   cardType,
@@ -177,6 +183,7 @@ const createBlock = (
   dueDate
 ) => {
   const task = {
+    id,
     name: taskTitle,
     description: taskDescription,
     priority,
@@ -531,7 +538,6 @@ const createBlock = (
     outermostDiv.remove();
     modal1OutermostDiv.remove();
     modal2OutermostDiv.remove();
-   
   });
 };
 
