@@ -530,27 +530,27 @@ const modalNameFix = (taskTitle) => {
 };
 
 // Calls to create cards
-createBlock(
-  inProgressColumn,
-  "inProgressCard",
-  "Task Tracker   Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  todoColumn,
-  "todoCard",
-  "Title",
-  "Work on the Task tracker",
-  "11/04/22"
-);
-createBlock(
-  completedColumn,
-  "completedCard",
-  "Another Project",
-  "Work on the Task tracker",
-  "11/04/22"
-);
+// createBlock(
+//   inProgressColumn,
+//   "inProgressCard",
+//   "Task Tracker   Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   todoColumn,
+//   "todoCard",
+//   "Title",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
+// createBlock(
+//   completedColumn,
+//   "completedCard",
+//   "Another Project",
+//   "Work on the Task tracker",
+//   "11/04/22"
+// );
 
 // injectionLocations: todoCard, inProgressCard, completedCard
 //     cardType,
