@@ -40,6 +40,12 @@ let completedColumn = document.getElementById("inject-completed");
 //inject Modal location
 let injectModals = document.getElementById("injectModals");
 
+//Alert injection location
+let alertInjectionLocation = document.getElementById("alertInjectionLocation");
+
+// modal close btn for add Task
+let closeModalBtn = document.getElementById("closeModal");
+
 //modal inputs
 let addTaskBtn = document.getElementById("addTaskBtn");
 let taskNameInput = document.getElementById("taskName");
@@ -151,6 +157,15 @@ addTaskBtn.addEventListener("click", function (e) {
   taskDescriptionInput.value = "";
   dueDateInput.value = "";
   taskPriorityInput.value = "";
+
+  // Add success message
+  alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Created!</div>`;
+  setTimeout(() => {
+    alertInjectionLocation.innerHTML = "";
+  }, 5000);
+
+  // close the modal
+  closeModalBtn.click();
 });
 
 const createBlock = (
@@ -165,7 +180,7 @@ const createBlock = (
     name: taskTitle,
     description: taskDescription,
     priority,
-    dueDate
+    dueDate,
   };
 
   //MODAL 1
