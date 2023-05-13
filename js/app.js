@@ -18,7 +18,7 @@ import {
     2. If edits to a task are made they should be reflected in local storage and on the DOM
 
     BUGS:
-    1. Tasks with the same name can exist and that breaks stuff ie: opening modals
+    1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks
     2. Tasks can have a past date, limit it to only the present and future dates
     FIXME
     3. When creating tasks, the task form can be submitted incorrectly needs data validation!
@@ -477,6 +477,7 @@ const createBlock = (
 
   //styling for first row
   outermostDiv.className = `col-12 ${cardType} mb-3`;
+  outermostDiv.id = `outerMostDiv${taskTitle}`;
   row1.className = "row";
   row1Div1.className = "col-12 mt-2";
   row1h2.className = "taskTitle text-center";
@@ -523,18 +524,14 @@ const createBlock = (
 
   //functionality for the buttons
   modal1FooterDeleteBtn.addEventListener("click", function () {
-    console.log(
-      "Delete the card and the modals from the DOM and eventually local storage"
-    );
+
     removeTaskFromLocalStorage(task);
 
-    /*
-    TODO
-    target parent nodes of both the card and the modals! 3 things need to get deleted
-    1. card
-    2. task options modal
-    3. view task modal
-    */
+    //remove card, view, and task options modal!
+    outermostDiv.remove();
+    modal1OutermostDiv.remove();
+    modal2OutermostDiv.remove();
+   
   });
 };
 
