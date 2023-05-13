@@ -145,6 +145,12 @@ addTaskBtn.addEventListener("click", function (e) {
     taskDescription.value,
     dueDateInput.value
   );
+
+  // Reset the values after a submission
+  taskNameInput.value = "";
+  taskDescriptionInput.value = "";
+  dueDateInput.value = "";
+  taskPriorityInput.value = "";
 });
 
 const createBlock = (
