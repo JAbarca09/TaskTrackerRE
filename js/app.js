@@ -1,7 +1,8 @@
 import {
   saveTaskToLocalStorage,
   removeTaskFromLocalStorage,
-  generateTaskId
+  editTaskOnLocalStorage,
+  generateTaskId,
 } from "./localStorage.js";
 import {
   checkIfInputEmpty,
@@ -19,10 +20,11 @@ import {
     2. If edits to a task are made they should be reflected in local storage and on the DOM
 
     BUGS:
-    1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks
-    2. Tasks can have a past date, limit it to only the present and future dates
+    1. Delete tasks by using a unique ID!
+    2. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks
+    3. Tasks can have a past date, limit it to only the present and future dates
     FIXME
-    3. When creating tasks, the task form can be submitted incorrectly needs data validation!
+    4. When creating tasks, the task form can be submitted incorrectly needs data validation!
 
     Additional Things to consider:
     1. Delete task button on the cards themselves we cannot remove tasks as of currently!
@@ -544,10 +546,19 @@ const createBlock = (
     //take the new changes of the card and save them to local storage
     //Need to generate ids for tasks!
     console.log(modalInputRow1.value);
-    console.log(modalInputRow1.value);
     console.log(modalInputRow2.value);
     console.log(modalBodySelect3.value);
     console.log(modalBodyInputRow4.value);
+    let tempTaskObj = {
+      id,
+      name: modalInputRow1.value,
+      description: modalInputRow2.value,
+      priority: modalBodySelect3.value,
+      dueDate: modalBodyInputRow4.value,
+    };
+    editTaskOnLocalStorage(tempTaskObj);
+
+    //update the DOM itself
 
   });
 };
