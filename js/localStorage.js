@@ -16,6 +16,7 @@ const removeTaskFromLocalStorage = (task) => {
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
   const indexOfTask = previousTasksArr.indexOf(task);
   previousTasksArr.splice(indexOfTask, 1);
+  localStorage.setItem("tasks", JSON.stringify(previousTasksArr));
 };
 
 export { saveTaskToLocalStorage, removeTaskFromLocalStorage };
