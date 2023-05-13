@@ -1,10 +1,8 @@
-export const saveTaskToLocalStorage = (task) => {
-  // get the previous tasks, save them into a variable []
-  // save the new task to the variable
-  // set local storage to JSON.stringify(variable)
+ const saveTaskToLocalStorage = (task) => {
+  // get all tasks
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
   if (previousTasksArr !== null) {
-    //there is a task
+    // if tasks are null
     previousTasksArr.push(task);
     localStorage.setItem("tasks", JSON.stringify(previousTasksArr));
   } else {
@@ -13,3 +11,11 @@ export const saveTaskToLocalStorage = (task) => {
     localStorage.setItem("tasks", JSON.stringify(tempArr));
   }
 };
+
+const removeTaskFromLocalStorage = (task) => {
+  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  const indexOfTask = previousTasksArr.indexOf(task);
+  previousTasksArr.splice(indexOfTask, 1);
+};
+
+export { saveTaskToLocalStorage, removeTaskFromLocalStorage };
