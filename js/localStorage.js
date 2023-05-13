@@ -1,6 +1,7 @@
 const saveTaskToLocalStorage = (task) => {
   // get all tasks
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  console.log(previousTasksArr);
   if (previousTasksArr !== null) {
     // if tasks are null
     previousTasksArr.push(task);
@@ -10,6 +11,22 @@ const saveTaskToLocalStorage = (task) => {
     let tempArr = [task];
     localStorage.setItem("tasks", JSON.stringify(tempArr));
   }
+};
+
+const editTaskOnLocalStorage = (task) => {
+  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  for (let i = 0; i < previousTasksArr.length; i++) {
+    if (previousTasksArr[i].id === task.id) {
+      previousTasksArr[i].id = task.id;
+      previousTasksArr[i].name = task.name;
+      previousTasksArr[i].description = task.description;
+      previousTasksArr[i].priority = task.priority;
+      previousTasksArr[i].dueDate = task.dueDate;
+      break;
+    }
+  }
+  //send array back to local storage
+  localStorage.setItem("tasks", JSON.stringify(previousTasksArr));
 };
 
 const removeTaskFromLocalStorage = (task) => {
@@ -52,4 +69,9 @@ const generateTaskId = function (length = 7) {
   return randomId;
 };
 
-export { saveTaskToLocalStorage, removeTaskFromLocalStorage, generateTaskId };
+export {
+  saveTaskToLocalStorage,
+  removeTaskFromLocalStorage,
+  editTaskOnLocalStorage,
+  generateTaskId,
+};
