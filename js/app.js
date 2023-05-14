@@ -10,30 +10,19 @@ import {
 } from "./helperFunctions.js";
 
 /*
-    UPDATE: 09/04/2022
-    Start working on the functionality of the application when the user adds a task, create an element
-    by calling the function. Additionally work on a solution for the local storage, I think an array
-    of objects seems to be a feasible solution if its possible with local storage!
-
     TODO
     1. When editing task the task name, description, due date, and priority should be pulled
     2. If edits to a task are made they should be reflected in local storage and on the DOM
+    3. Loading Tasks from local storage
+    4. Data validate edit task modal form
 
-    BUGS:
-    1. Delete tasks by using a unique ID!
-    2. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
-    3. Tasks can have a past date, limit it to only the present and future dates
+    BUG:
+    1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
+    2. Tasks can have a past date, limit it to only the present and future dates
+
     FIXME
-    4. When creating tasks, the task form can be submitted incorrectly needs data validation!
-
-    Additional Things to consider:
-    1. Delete task button on the cards themselves we cannot remove tasks as of currently!
-        a. functionality for deleting cards and modals! for now remove from the DOM
-
-    UPDATE 11/4/22
-    Added a delete button to task options
-    working on delete button functionality, removing card and modals from the DOM they need updated Ids which causes the modals to need updated targets as well!
-    */
+    1. When creating tasks, the task form can be submitted incorrectly needs data validation!
+*/
 
 //injection card column locations
 let todoColumn = document.getElementById("inject-to-do");
