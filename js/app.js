@@ -543,12 +543,8 @@ const createBlock = (
 
   //save changes btn on task options
   modal1FooterCloseBtn2.addEventListener("click", function () {
-    //take the new changes of the card and save them to local storage
-    //Need to generate ids for tasks!
-    console.log(modalInputRow1.value);
-    console.log(modalInputRow2.value);
-    console.log(modalBodySelect3.value);
-    console.log(modalBodyInputRow4.value);
+    let newCardColorClass = "";
+    let newInjectionLocation;
     let tempTaskObj = {
       id,
       name: modalInputRow1.value,
@@ -556,10 +552,29 @@ const createBlock = (
       priority: modalBodySelect3.value,
       dueDate: modalBodyInputRow4.value,
     };
+    //take the new changes of the card and save them to local storage
     editTaskOnLocalStorage(tempTaskObj);
 
-    //update the DOM itself
+    // Changes should be reflected on the DOM
+    switch (modalBodySelect3.value) {
+      case "1":
+        newInjectionLocation = todoColumn;
+        newCardColorClass = "todoCard";
+        break;
+      case "2":
+        newInjectionLocation = inProgressColumn;
+        newCardColorClass = "inProgressCard";
+        break;
+      case "3":
+        newInjectionLocation = completedColumn;
+        newCardColorClass = "completedCard";
+        break;
+    }
 
+    //card changes
+    row1h2.innerHTML = modalInputRow1.value;
+    outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
+    newInjectionLocation.appendChild(outermostDiv);
   });
 };
 
