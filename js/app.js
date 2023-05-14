@@ -14,7 +14,7 @@ import {
     1. When editing task the task name, description, due date, and priority should be pulled
     2. If edits to a task are made they should be reflected in local storage and on the DOM
     3. Loading Tasks from local storage
-    4. Data validate edit task modal form
+    4. TODO Data validate edit task modal form
 
     BUG:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
@@ -181,7 +181,7 @@ const createBlock = (
     dueDate,
   };
 
-  //MODAL 1
+  //---------------------------------------------------------------------MODAL 1
   const REVISEDtaskTitle = modalNameFix(taskTitle);
 
   //Modal 1 outermost div
@@ -218,18 +218,22 @@ const createBlock = (
   let modalBodyCol1 = document.createElement("div");
   let modalLabelRow1 = document.createElement("label");
   let modalInputRow1 = document.createElement("input");
+  let modalTaskNameError = document.createElement("div");
 
   //row 2 vars and declarations
   let modalBodyRow2 = document.createElement("div");
   let modalBodyLabel2 = document.createElement("label");
   let modalBodyCol2 = document.createElement("div");
   let modalInputRow2 = document.createElement("input");
+  let modalTaskDescriptionError = document.createElement("div");
 
   //row 3 vars and declarations
   let modalBodyRow3 = document.createElement("div");
   let modalBodyLabel3 = document.createElement("label");
   let modalBodyCol3 = document.createElement("div");
   let modalBodySelect3 = document.createElement("select");
+  let modalTaskPriorityError = document.createElement("div");
+
   //different options for the select
   let modalBodySelectThreeOption1 = document.createElement("option");
   let modalBodySelectThreeOption2 = document.createElement("option");
@@ -241,6 +245,7 @@ const createBlock = (
   let modalBodyLabel4 = document.createElement("label");
   let modalBodyCol4 = document.createElement("div");
   let modalBodyInputRow4 = document.createElement("input");
+  let modalTaskDueDateError = document.createElement("div");
 
   //Modal1 Header
   let modal1Header = document.createElement("div");
@@ -330,11 +335,13 @@ const createBlock = (
   modalBodyRow1.appendChild(modalLabelRow1);
   modalBodyRow1.appendChild(modalBodyCol1);
   modalBodyCol1.appendChild(modalInputRow1);
+  modalBodyCol1.appendChild(modalTaskNameError);
 
   //putting the second modal row together
   modalBodyRow2.appendChild(modalBodyLabel2);
   modalBodyRow2.appendChild(modalBodyCol2);
   modalBodyCol2.appendChild(modalInputRow2);
+  modalBodyCol2.appendChild(modalTaskDescriptionError);
 
   //putting the third modal row together
   modalBodyRow3.appendChild(modalBodyLabel3);
@@ -344,11 +351,15 @@ const createBlock = (
   modalBodySelect3.appendChild(modalBodySelectThreeOption2);
   modalBodySelect3.appendChild(modalBodySelectThreeOption3);
   modalBodySelect3.appendChild(modalBodySelectThreeOption4);
+  modalBodyCol3.appendChild(modalTaskPriorityError);
+
 
   //putting the fourth modal row together
   modalBodyRow4.appendChild(modalBodyLabel4);
   modalBodyRow4.appendChild(modalBodyCol4);
   modalBodyCol4.appendChild(modalBodyInputRow4);
+  modalBodyCol4.appendChild(modalTaskDueDateError);
+  
 
   //putting the modal header together
   modal1Header.appendChild(modal1HeaderTitle);
@@ -532,6 +543,45 @@ const createBlock = (
 
   //save changes btn on task options
   modal1FooterCloseBtn2.addEventListener("click", function () {
+    const isEditNameValid = checkIfInputEmpty(modalInputRow1.value);
+    const isEditDescriptionValid = checkIfInputEmpty(modalInputRow2.value);
+    const isEditDueDateValid = checkIfInputEmpty(modalBodySelect3.value);
+    const isEditValidPriority = checkIfPriorityIsValid(modalBodyInputRow4.value);
+  
+    // remove errors
+    modalTaskNameError.innerHTML = "";
+    modalTaskDescriptionError.innerHTML = "";
+    modalTaskDueDateError.innerHTML = "";
+    modalTaskPriorityError.innerHTML = "";
+  
+    //Data validate task before submitting it
+    if (
+      !isEditNameValid ||
+      !isEditDescriptionValid ||
+      !isEditDueDateValid ||
+      !isEditValidPriority
+    ) {
+      if (!isEditNameValid) {
+        //TODO replace taskNameError with other location
+        modalTaskNameError.innerHTML =
+          '<p class="mb-0 invalid">Enter a valid task name!</p>';
+      }
+      if (!isEditDescriptionValid) {
+        modalTaskDescriptionError.innerHTML =
+          '<p class="mb-0 invalid">Enter a valid task description!</p>';
+      }
+      if (!isEditDueDateValid) {
+        modalTaskDueDateError.innerHTML =
+          '<p class="mb-0 invalid">Enter a valid due date!</p>';
+      }
+      if (!isEditValidPriority) {
+        modalTaskPriorityError.innerHTML =
+          '<p class="mb-0 invalid">Enter a valid task priority!</p>';
+      }
+      // stop the function from creating a task if there is an error
+      return;
+    }
+
     let newCardColorClass = "";
     let newInjectionLocation;
     let tempTaskObj = {
