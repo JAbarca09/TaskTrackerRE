@@ -21,7 +21,7 @@ import {
 
     BUGS:
     1. Delete tasks by using a unique ID!
-    2. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks
+    2. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
     3. Tasks can have a past date, limit it to only the present and future dates
     FIXME
     4. When creating tasks, the task form can be submitted incorrectly needs data validation!

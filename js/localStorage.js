@@ -35,7 +35,7 @@ const removeTaskFromLocalStorage = (task) => {
   let indexOfTask = 1;
   for (let i = 0; i <= previousTasksArr.length; i++) {
     // FIXME names have to be unique, or alternatively generate ids for tasks instead
-    if (previousTasksArr[i].name === task.name) {
+    if (previousTasksArr[i].id === task.id) {
       indexOfTask = i;
       break;
     }
