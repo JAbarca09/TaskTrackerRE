@@ -11,17 +11,11 @@ import {
 
 /*
     TODO
-    1. When editing task the task name, description, due date, and priority should be pulled
-    2. If edits to a task are made they should be reflected in local storage and on the DOM
-    3. Loading Tasks from local storage
-    4. TODO Data validate edit task modal form
+    1. Loading Tasks from local storage
 
     BUG:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
     2. Tasks can have a past date, limit it to only the present and future dates
-
-    FIXME
-    1. When creating tasks, the task form can be submitted incorrectly needs data validation!
 */
 
 //injection card column locations
