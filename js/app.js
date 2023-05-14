@@ -575,6 +575,15 @@ const createBlock = (
     row1h2.innerHTML = modalInputRow1.value;
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
+
+    //TODO Alert message that task was successfully edited!
+    alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
+    setTimeout(() => {
+      alertInjectionLocation.innerHTML = "";
+    }, 5000);
+
+    //close the edit task modal!
+    modal1HeaderCloseBtn.click();
   });
 };
 
