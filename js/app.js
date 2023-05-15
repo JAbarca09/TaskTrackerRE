@@ -18,6 +18,11 @@ import {
     2. Tasks can have a past date, limit it to only the present and future dates
 */
 
+//Task counter locations
+let TodoCounter = document.getElementById("TodoCounter");
+let InProgressCounter = document.getElementById("InProgressCounter");
+let CompletedCounter = document.getElementById("CompletedCounter");
+
 //injection card column locations
 let todoColumn = document.getElementById("inject-to-do");
 let inProgressColumn = document.getElementById("inject-in-progress");
