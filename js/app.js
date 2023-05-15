@@ -52,7 +52,6 @@ dueDateInput.min = result;
 let tasks = [];
 
 addTaskBtn.addEventListener("click", function (e) {
-  // FIXME Add data validation to add Task before submitted
   const isNameValid = checkIfInputEmpty(taskNameInput.value);
   const isDescriptionValid = checkIfInputEmpty(taskDescriptionInput.value);
   const isDueDateValid = checkIfInputEmpty(dueDateInput.value);
@@ -556,7 +555,6 @@ const createBlock = (
       !isEditValidPriority
     ) {
       if (!isEditNameValid) {
-        //TODO replace taskNameError with other location
         modalTaskNameError.innerHTML =
           '<p class="mb-0 invalid">Enter a valid task name!</p>';
       }
@@ -609,7 +607,7 @@ const createBlock = (
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
 
-    //TODO Alert message that task was successfully edited!
+    //Alert message that task was successfully edited!
     alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
     setTimeout(() => {
       alertInjectionLocation.innerHTML = "";
