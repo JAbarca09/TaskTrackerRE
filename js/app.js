@@ -11,7 +11,7 @@ import {
 
 /*
     TODO
-    1. Loading Tasks from local storage
+    1. Work on task counters or remove them!
 
     BUG:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
@@ -347,13 +347,11 @@ const createBlock = (
   modalBodySelect3.appendChild(modalBodySelectThreeOption4);
   modalBodyCol3.appendChild(modalTaskPriorityError);
 
-
   //putting the fourth modal row together
   modalBodyRow4.appendChild(modalBodyLabel4);
   modalBodyRow4.appendChild(modalBodyCol4);
   modalBodyCol4.appendChild(modalBodyInputRow4);
   modalBodyCol4.appendChild(modalTaskDueDateError);
-  
 
   //putting the modal header together
   modal1Header.appendChild(modal1HeaderTitle);
@@ -540,14 +538,16 @@ const createBlock = (
     const isEditNameValid = checkIfInputEmpty(modalInputRow1.value);
     const isEditDescriptionValid = checkIfInputEmpty(modalInputRow2.value);
     const isEditDueDateValid = checkIfInputEmpty(modalBodySelect3.value);
-    const isEditValidPriority = checkIfPriorityIsValid(modalBodyInputRow4.value);
-  
+    const isEditValidPriority = checkIfPriorityIsValid(
+      modalBodyInputRow4.value
+    );
+
     // remove errors
     modalTaskNameError.innerHTML = "";
     modalTaskDescriptionError.innerHTML = "";
     modalTaskDueDateError.innerHTML = "";
     modalTaskPriorityError.innerHTML = "";
-  
+
     //Data validate task before submitting it
     if (
       !isEditNameValid ||
@@ -632,32 +632,40 @@ const modalNameFix = (taskTitle) => {
   return newTitle;
 };
 
-// Calls to create cards
-// createBlock(
-//   inProgressColumn,
-//   "inProgressCard",
-//   "Task Tracker   Project",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
-// createBlock(
-//   todoColumn,
-//   "todoCard",
-//   "Title",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
-// createBlock(
-//   completedColumn,
-//   "completedCard",
-//   "Another Project",
-//   "Work on the Task tracker",
-//   "11/04/22"
-// );
+loadTasksFromLocalStorage();
 
-// injectionLocations: todoCard, inProgressCard, completedCard
-//     cardType,
-//     taskTitle,
-//     taskDescription,
-//     taskPriority,
-//     dueDate
+// load tasks using local storage
+function loadTasksFromLocalStorage() {
+  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  //check if there are tasks in the arr!
+  if (previousTasksArr !== null) {
+    previousTasksArr.map((task) => {
+      let loadInjectionLocation;
+      let loadCardColorClass;
+
+      switch (task.priority) {
+        case "1":
+          loadInjectionLocation = todoColumn;
+          loadCardColorClass = "todoCard";
+          break;
+        case "2":
+          loadInjectionLocation = inProgressColumn;
+          loadCardColorClass = "inProgressCard";
+          break;
+        case "3":
+          loadInjectionLocation = completedColumn;
+          loadCardColorClass = "completedCard";
+          break;
+      }
+      createBlock(
+        task.id,
+        loadInjectionLocation,
+        task.priority,
+        loadCardColorClass,
+        task.name,
+        task.description,
+        task.dueDate
+      );
+    });
+  }
+}
