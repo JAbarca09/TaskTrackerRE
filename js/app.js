@@ -760,3 +760,34 @@ function updateTaskCounter(To, From = null, Type) {
     return;
   }
 }
+
+function loadTaskCountersOnLoad() {
+  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  console.log(previousTasksArr);
+  let TodoCount = Number(TodoCounter.innerText);
+  let InProgressCount = Number(InProgressCounter.innerText);
+  let CompletedCount = Number(CompletedCounter.innerText);
+
+
+  for (let i = 0; i < previousTasksArr.length; i++) {
+    console.log(TodoCount)
+    switch (previousTasksArr[i].priority) {
+      case "1":
+        TodoCount++;
+        TodoCounter.innerText = `${TodoCount}`;
+        break;
+
+      case "2":
+        InProgressCount++;
+        InProgressCounter.innerText = `${InProgressCount}`;
+        break;
+
+      case "3":
+        CompletedCount++;
+        CompletedCounter.innerText = `${CompletedCount}`;
+        break;
+    }
+  }
+}
+
+loadTaskCountersOnLoad();
