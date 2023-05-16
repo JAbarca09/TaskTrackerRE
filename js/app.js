@@ -583,6 +583,9 @@ const createBlock = (
       return;
     }
 
+    //close the edit task modal!
+    modal1HeaderCloseBtn.click();
+
     let newCardColorClass = "";
     let newInjectionLocation;
     let tempTaskObj = {
@@ -623,12 +626,19 @@ const createBlock = (
     }, 5000);
 
     //Counter changes
-    console.log("to priority:", task.priority);
-    console.log("From priority:", modalBodySelect3.value);
+    // FIXME fix the counter SWITCH action
+    /*
+    BUG Notes:
+      The from value that is derived from task.priority does not update when the task switches priority,
+      the task.priority value is only generated when the card is created! The task.priority or from value 
+      needs to get updated when the task priority changes specifically when edited!
+    */
+    console.log("Task priority:", task.priority);
+    console.log("--------------------------------------------------------------");
     updateTaskCounter(modalBodySelect3.value, task.priority, "SWITCH");
 
-    //close the edit task modal!
-    modal1HeaderCloseBtn.click();
+    //update task priority From to new From location
+    task.priority = modalBodySelect3.value;
   });
 };
 
@@ -688,20 +698,26 @@ function updateTaskCounter(To, From = null, Type) {
   let InProgressCount = Number(InProgressCounter.innerText);
   let CompletedCount = Number(CompletedCounter.innerText);
 
+  console.log("Todo Counter:", TodoCount);
+  console.log("InProgress Counter:", InProgressCount);
+
   if (From === null) {
     if (Type === "ADD") {
       switch (To) {
         //Add 1 to the counter!
         case "1":
-          TodoCounter.innerText = `${TodoCount + 1}`;
+          TodoCount++;
+          TodoCounter.innerText = `${TodoCount}`;
           break;
 
         case "2":
-          InProgressCounter.innerText = `${InProgressCount + 1}`;
+          InProgressCount++;
+          InProgressCounter.innerText = `${InProgressCount}`;
           break;
 
         case "3":
-          CompletedCounter.innerText = `${CompletedCount + 1}`;
+          CompletedCount++;
+          CompletedCounter.innerText = `${CompletedCount}`;
           break;
       }
       return;
@@ -711,15 +727,18 @@ function updateTaskCounter(To, From = null, Type) {
       switch (To) {
         //Subtract 1 to the counter!
         case "1":
-          TodoCounter.innerText = `${TodoCount - 1}`;
+          TodoCount--;
+          TodoCounter.innerText = `${TodoCount}`;
           break;
 
         case "2":
-          InProgressCounter.innerText = `${InProgressCount - 1}`;
+          InProgressCount--;
+          InProgressCounter.innerText = `${InProgressCount}`;
           break;
 
         case "3":
-          CompletedCounter.innerText = `${CompletedCount - 1}`;
+          CompletedCount--;
+          CompletedCounter.innerText = `${CompletedCount}`;
           break;
       }
       return;
@@ -727,37 +746,43 @@ function updateTaskCounter(To, From = null, Type) {
   }
 
   if (Type === "SWITCH") {
+    // FIXME switching back and forth causes bugs
     // subtract 1 from the "From" location
     // add 1 to the "To" location
 
     switch (From) {
       case "1":
-        TodoCounter.innerText = `${TodoCount - 1}`;
+        TodoCount--;
+        TodoCounter.innerText = `${TodoCount}`;
         break;
 
       case "2":
-        InProgressCounter.innerText = `${InProgressCount - 1}`;
+        InProgressCount--;
+        InProgressCounter.innerText = `${InProgressCount}`;
         break;
 
       case "3":
-        CompletedCounter.innerText = `${CompletedCount - 1}`;
+        CompletedCount--;
+        CompletedCounter.innerText = `${CompletedCount}`;
         break;
     }
 
     switch (To) {
       case "1":
-        TodoCounter.innerText = `${TodoCount + 1}`;
+        TodoCount++;
+        TodoCounter.innerText = `${TodoCount}`;
         break;
 
       case "2":
-        InProgressCounter.innerText = `${InProgressCount + 1}`;
+        InProgressCount++;
+        InProgressCounter.innerText = `${InProgressCount}`;
         break;
 
       case "3":
-        CompletedCounter.innerText = `${CompletedCount + 1}`;
+        CompletedCount++;
+        CompletedCounter.innerText = `${CompletedCount}`;
         break;
     }
-    return;
   }
 }
 
@@ -768,9 +793,7 @@ function loadTaskCountersOnLoad() {
   let InProgressCount = Number(InProgressCounter.innerText);
   let CompletedCount = Number(CompletedCounter.innerText);
 
-
   for (let i = 0; i < previousTasksArr.length; i++) {
-    console.log(TodoCount)
     switch (previousTasksArr[i].priority) {
       case "1":
         TodoCount++;
