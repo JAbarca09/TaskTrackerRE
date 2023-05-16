@@ -11,10 +11,11 @@ import {
 
 /*
     TODO
-    1. When tasks are loaded, the counters must also be loaded as well!
+    1. If a task has a really long name it will break the cards
+      * Truncate the task name Example: LongTaskName...
+    2. On View Task modal add the full task name title!
 
     BUG:
-    1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
     2. Tasks can have a past date, limit it to only the present and future dates
 */
 
