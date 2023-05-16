@@ -646,6 +646,8 @@ const modalNameFix = (taskTitle) => {
 };
 
 loadTasksFromLocalStorage();
+loadTaskCountersOnLoad();
+
 
 // load tasks using local storage
 function loadTasksFromLocalStorage() {
@@ -799,5 +801,3 @@ function loadTaskCountersOnLoad() {
     }
   }
 }
-
-loadTaskCountersOnLoad();
