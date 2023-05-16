@@ -626,15 +626,6 @@ const createBlock = (
     }, 5000);
 
     //Counter changes
-    // FIXME fix the counter SWITCH action
-    /*
-    BUG Notes:
-      The from value that is derived from task.priority does not update when the task switches priority,
-      the task.priority value is only generated when the card is created! The task.priority or from value 
-      needs to get updated when the task priority changes specifically when edited!
-    */
-    console.log("Task priority:", task.priority);
-    console.log("--------------------------------------------------------------");
     updateTaskCounter(modalBodySelect3.value, task.priority, "SWITCH");
 
     //update task priority From to new From location
@@ -697,9 +688,6 @@ function updateTaskCounter(To, From = null, Type) {
   let TodoCount = Number(TodoCounter.innerText);
   let InProgressCount = Number(InProgressCounter.innerText);
   let CompletedCount = Number(CompletedCounter.innerText);
-
-  console.log("Todo Counter:", TodoCount);
-  console.log("InProgress Counter:", InProgressCount);
 
   if (From === null) {
     if (Type === "ADD") {
@@ -788,7 +776,6 @@ function updateTaskCounter(To, From = null, Type) {
 
 function loadTaskCountersOnLoad() {
   const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
-  console.log(previousTasksArr);
   let TodoCount = Number(TodoCounter.innerText);
   let InProgressCount = Number(InProgressCounter.innerText);
   let CompletedCount = Number(CompletedCounter.innerText);
