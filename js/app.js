@@ -11,8 +11,7 @@ import {
 
 /*
     TODO
-    1. Work on task counters or remove them!
-      * Use Local Storage or other method to create counters, can save innerHTML to a variable!
+    1. When tasks are loaded, the counters must also be loaded as well!
 
     BUG:
     1. Tasks with the same name can exist and that breaks stuff ie: opening modals and removing tasks, implement id to modals and card!!
