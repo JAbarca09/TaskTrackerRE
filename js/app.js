@@ -147,7 +147,10 @@ addTaskBtn.addEventListener("click", function (e) {
     dueDateInput.value
   );
 
-  // Reset the values after a submission
+  //update task counter
+  updateTaskCounter(taskPriorityInput.value, null, "ADD");
+
+  // Reset the values of Add Task form after a successful submission!
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
   dueDateInput.value = "";
@@ -530,6 +533,7 @@ const createBlock = (
 
   //delete btn on task options
   modal1FooterDeleteBtn.addEventListener("click", function () {
+    updateTaskCounter(task.priority, null, "REMOVE");
     removeTaskFromLocalStorage(task);
 
     //remove card, view, and task options modal!
@@ -619,6 +623,11 @@ const createBlock = (
       alertInjectionLocation.innerHTML = "";
     }, 5000);
 
+    //Counter changes
+    console.log("to priority:", task.priority);
+    console.log("From priority:", modalBodySelect3.value);
+    updateTaskCounter(modalBodySelect3.value, task.priority, "SWITCH");
+
     //close the edit task modal!
     modal1HeaderCloseBtn.click();
   });
@@ -671,5 +680,84 @@ function loadTasksFromLocalStorage() {
         task.dueDate
       );
     });
+  }
+}
+
+function updateTaskCounter(To, From = null, Type) {
+  //get the counters
+  let TodoCount = Number(TodoCounter.innerText);
+  let InProgressCount = Number(InProgressCounter.innerText);
+  let CompletedCount = Number(CompletedCounter.innerText);
+
+  if (From === null) {
+    if (Type === "ADD") {
+      switch (To) {
+        //Add 1 to the counter!
+        case "1":
+          TodoCounter.innerText = `${TodoCount + 1}`;
+          break;
+
+        case "2":
+          InProgressCounter.innerText = `${InProgressCount + 1}`;
+          break;
+
+        case "3":
+          CompletedCounter.innerText = `${CompletedCount + 1}`;
+          break;
+      }
+      return;
+    }
+
+    if (Type === "REMOVE") {
+      switch (To) {
+        //Subtract 1 to the counter!
+        case "1":
+          TodoCounter.innerText = `${TodoCount - 1}`;
+          break;
+
+        case "2":
+          InProgressCounter.innerText = `${InProgressCount - 1}`;
+          break;
+
+        case "3":
+          CompletedCounter.innerText = `${CompletedCount - 1}`;
+          break;
+      }
+      return;
+    }
+  }
+
+  if (Type === "SWITCH") {
+    // subtract 1 from the "From" location
+    // add 1 to the "To" location
+
+    switch (From) {
+      case "1":
+        TodoCounter.innerText = `${TodoCount - 1}`;
+        break;
+
+      case "2":
+        InProgressCounter.innerText = `${InProgressCount - 1}`;
+        break;
+
+      case "3":
+        CompletedCounter.innerText = `${CompletedCount - 1}`;
+        break;
+    }
+
+    switch (To) {
+      case "1":
+        TodoCounter.innerText = `${TodoCount + 1}`;
+        break;
+
+      case "2":
+        InProgressCounter.innerText = `${InProgressCount + 1}`;
+        break;
+
+      case "3":
+        CompletedCounter.innerText = `${CompletedCount + 1}`;
+        break;
+    }
+    return;
   }
 }
