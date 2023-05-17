@@ -12,12 +12,10 @@ import {
 
 /*
     TODO
-    1. If a task has a really long name it will break the cards
-      * Truncate the task name Example: LongTaskName...
-    2. On View Task modal add the full task name title!
+    1. View Task modal should display full name
 
     BUG:
-    2. Tasks can have a past date, limit it to only the present and future dates
+    1. Tasks can have a past date, limit it to only the present and future dates
 */
 
 //Task counter locations
@@ -741,7 +739,6 @@ function updateTaskCounter(To, From = null, Type) {
   }
 
   if (Type === "SWITCH") {
-    // FIXME switching back and forth causes bugs
     // subtract 1 from the "From" location
     // add 1 to the "To" location
 
