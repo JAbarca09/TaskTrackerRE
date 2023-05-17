@@ -7,6 +7,7 @@ import {
 import {
   checkIfInputEmpty,
   checkIfPriorityIsValid,
+  truncateTaskName
 } from "./helperFunctions.js";
 
 /*
@@ -484,13 +485,16 @@ const createBlock = (
   let row3Div3 = document.createElement("div");
   let row3DivBtn2 = document.createElement("button");
 
+  //truncate task name
+  const truncateName = truncateTaskName(taskTitle, 10);
+
   //styling for first row
   outermostDiv.className = `col-12 ${cardType} mb-3`;
   outermostDiv.id = `outerMostDiv${taskTitle}`;
   row1.className = "row";
   row1Div1.className = "col-12 mt-2";
   row1h2.className = "taskTitle text-center";
-  row1h2.innerHTML = taskTitle;
+  row1h2.innerHTML = truncateName;
 
   //styling for the second row
   row2.className = "row mt-4";
