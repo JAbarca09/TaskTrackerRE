@@ -10,4 +10,8 @@ const checkIfPriorityIsValid = (input) => {
   return isValidPriority;
 };
 
-export { checkIfInputEmpty, checkIfPriorityIsValid };
+const truncateTaskName = (str, max) => {
+  return str.length > max ? str.substr(0, max - 1) + "…" : str;
+};
+
+export { checkIfInputEmpty, checkIfPriorityIsValid, truncateTaskName };
