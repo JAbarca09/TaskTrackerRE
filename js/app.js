@@ -13,6 +13,7 @@ import {
 /*
     TODO
     1. View Task modal should display full name
+    2. Show an alert when a task is deleted!
 
     BUG:
     1. Tasks can have a past date, limit it to only the present and future dates
