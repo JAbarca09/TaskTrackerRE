@@ -543,6 +543,11 @@ const createBlock = (
     outermostDiv.remove();
     modal1OutermostDiv.remove();
     modal2OutermostDiv.remove();
+
+    alertInjectionLocation.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Task Deleted!</div>`;
+    setTimeout(() => {
+      alertInjectionLocation.innerHTML = "";
+    }, 5000);
   });
 
   //save changes btn on task options
