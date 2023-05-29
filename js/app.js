@@ -11,12 +11,10 @@ import {
 } from "./helperFunctions.js";
 
 /*
-    TODO
-    1. View Task modal should display full name
-    2. View Task modal should also display priority!
+  TODO
+  1. View Task modal should display full name
+  2. View Task modal should also display priority!
 
-    BUG:
-    1. Tasks can have a past date, limit it to only the present and future dates
 */
 
 //Task counter locations
@@ -51,11 +49,8 @@ let taskDescriptionError = document.getElementById("taskDescriptionError");
 let dueDateInputError = document.getElementById("dueDateInputError");
 let taskPriorityError = document.getElementById("taskPriorityError");
 
-//set dueDateInput minimum to be in YYYY-MM-DD format to set the minimum for the dueDateInput dont forget calendar Input as well!
-const result = new Date().toLocaleDateString("sv");
-dueDateInput.min = result;
-
-let tasks = [];
+const currentDate = new Date().toLocaleDateString("sv");
+dueDateInput.min = currentDate;
 
 addTaskBtn.addEventListener("click", function (e) {
   const isNameValid = checkIfInputEmpty(taskNameInput.value);
@@ -143,7 +138,7 @@ addTaskBtn.addEventListener("click", function (e) {
     taskPriorityInput.value,
     cardColorClass,
     taskNameInput.value,
-    taskDescription.value,
+    taskDescriptionInput.value,
     dueDateInput.value
   );
 
@@ -305,7 +300,7 @@ const createBlock = (
   modalBodyCol4.className = "col-sm-9";
   modalBodyInputRow4.className = "calendarInput";
   modalBodyInputRow4.id = "dueDate";
-  modalBodyInputRow4.min = result;
+  modalBodyInputRow4.min = currentDate;
   modalBodyInputRow4.setAttribute("type", "date");
 
   //styling for the modal 1 header
