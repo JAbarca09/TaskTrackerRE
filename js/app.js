@@ -17,6 +17,7 @@ import {
 
   BUG
   1. Really long task names look weird on view task modal!
+  2. When a task gets special characters in the task name, neither modal on a card can be opened! EX: ';'
 
 */
 
