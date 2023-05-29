@@ -3,12 +3,12 @@ import {
   removeTaskFromLocalStorage,
   editTaskOnLocalStorage,
   generateTaskId,
-} from "./localStorage.js";
+} from './localStorage.js';
 import {
   checkIfInputEmpty,
   checkIfPriorityIsValid,
-  truncateTaskName
-} from "./helperFunctions.js";
+  truncateTaskName,
+} from './helperFunctions.js';
 
 /*
   TODO
@@ -18,51 +18,51 @@ import {
 */
 
 //Task counter locations
-let TodoCounter = document.getElementById("TodoCounter");
-let InProgressCounter = document.getElementById("InProgressCounter");
-let CompletedCounter = document.getElementById("CompletedCounter");
+let TodoCounter = document.getElementById('TodoCounter');
+let InProgressCounter = document.getElementById('InProgressCounter');
+let CompletedCounter = document.getElementById('CompletedCounter');
 
 //injection card column locations
-let todoColumn = document.getElementById("inject-to-do");
-let inProgressColumn = document.getElementById("inject-in-progress");
-let completedColumn = document.getElementById("inject-completed");
+let todoColumn = document.getElementById('inject-to-do');
+let inProgressColumn = document.getElementById('inject-in-progress');
+let completedColumn = document.getElementById('inject-completed');
 
 //inject Modal location
-let injectModals = document.getElementById("injectModals");
+let injectModals = document.getElementById('injectModals');
 
 //Alert injection location
-let alertInjectionLocation = document.getElementById("alertInjectionLocation");
+let alertInjectionLocation = document.getElementById('alertInjectionLocation');
 
 // modal close btn for add Task
-let closeModalBtn = document.getElementById("closeModal");
+let closeModalBtn = document.getElementById('closeModal');
 
 //modal inputs
-let addTaskBtn = document.getElementById("addTaskBtn");
-let taskNameInput = document.getElementById("taskName");
-let taskDescriptionInput = document.getElementById("taskDescription");
-let taskPriorityInput = document.getElementById("taskPriority");
-let dueDateInput = document.getElementById("dueDateInput");
+let addTaskBtn = document.getElementById('addTaskBtn');
+let taskNameInput = document.getElementById('taskName');
+let taskDescriptionInput = document.getElementById('taskDescription');
+let taskPriorityInput = document.getElementById('taskPriority');
+let dueDateInput = document.getElementById('dueDateInput');
 
 //error divs
-let taskNameError = document.getElementById("taskNameError");
-let taskDescriptionError = document.getElementById("taskDescriptionError");
-let dueDateInputError = document.getElementById("dueDateInputError");
-let taskPriorityError = document.getElementById("taskPriorityError");
+let taskNameError = document.getElementById('taskNameError');
+let taskDescriptionError = document.getElementById('taskDescriptionError');
+let dueDateInputError = document.getElementById('dueDateInputError');
+let taskPriorityError = document.getElementById('taskPriorityError');
 
-const currentDate = new Date().toLocaleDateString("sv");
+const currentDate = new Date().toLocaleDateString('sv');
 dueDateInput.min = currentDate;
 
-addTaskBtn.addEventListener("click", function (e) {
+addTaskBtn.addEventListener('click', function (e) {
   const isNameValid = checkIfInputEmpty(taskNameInput.value);
   const isDescriptionValid = checkIfInputEmpty(taskDescriptionInput.value);
   const isDueDateValid = checkIfInputEmpty(dueDateInput.value);
   const isValidPriority = checkIfPriorityIsValid(taskPriorityInput.value);
 
   // remove errors
-  taskNameError.innerHTML = "";
-  taskDescriptionError.innerHTML = "";
-  dueDateInputError.innerHTML = "";
-  taskPriorityError.innerHTML = "";
+  taskNameError.innerHTML = '';
+  taskDescriptionError.innerHTML = '';
+  dueDateInputError.innerHTML = '';
+  taskPriorityError.innerHTML = '';
 
   //Data validate task before submitting it
   if (
@@ -97,16 +97,16 @@ addTaskBtn.addEventListener("click", function (e) {
 
   let taskObj = {
     id: taskId,
-    name: "",
-    description: "",
-    priority: "",
-    dueDate: "",
+    name: '',
+    description: '',
+    priority: '',
+    dueDate: '',
   };
 
-  taskObj["name"] = taskNameInput.value;
-  taskObj["description"] = taskDescriptionInput.value;
-  taskObj["priority"] = taskPriorityInput.value;
-  taskObj["dueDate"] = dueDateInput.value;
+  taskObj['name'] = taskNameInput.value;
+  taskObj['description'] = taskDescriptionInput.value;
+  taskObj['priority'] = taskPriorityInput.value;
+  taskObj['dueDate'] = dueDateInput.value;
 
   switch (taskPriorityInput.value) {
     /*
@@ -116,17 +116,17 @@ addTaskBtn.addEventListener("click", function (e) {
         Completed
         */
 
-    case "1":
+    case '1':
       injectionLocation = todoColumn;
-      cardColorClass = "todoCard";
+      cardColorClass = 'todoCard';
       break;
-    case "2":
+    case '2':
       injectionLocation = inProgressColumn;
-      cardColorClass = "inProgressCard";
+      cardColorClass = 'inProgressCard';
       break;
-    case "3":
+    case '3':
       injectionLocation = completedColumn;
-      cardColorClass = "completedCard";
+      cardColorClass = 'completedCard';
       break;
   }
 
@@ -143,18 +143,18 @@ addTaskBtn.addEventListener("click", function (e) {
   );
 
   //update task counter
-  updateTaskCounter(taskPriorityInput.value, null, "ADD");
+  updateTaskCounter(taskPriorityInput.value, null, 'ADD');
 
   // Reset the values of Add Task form after a successful submission!
-  taskNameInput.value = "";
-  taskDescriptionInput.value = "";
-  dueDateInput.value = "";
-  taskPriorityInput.value = "";
+  taskNameInput.value = '';
+  taskDescriptionInput.value = '';
+  dueDateInput.value = '';
+  taskPriorityInput.value = '';
 
   // Add success message
   alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Created!</div>`;
   setTimeout(() => {
-    alertInjectionLocation.innerHTML = "";
+    alertInjectionLocation.innerHTML = '';
   }, 5000);
 
   // close the modal
@@ -182,151 +182,151 @@ const createBlock = (
   const REVISEDtaskTitle = modalNameFix(taskTitle);
 
   //Modal 1 outermost div
-  let modal1OutermostDiv = document.createElement("div");
+  let modal1OutermostDiv = document.createElement('div');
 
   //Modal 1 subdiv 1 from outermost div
-  let modal1SubDiv1 = document.createElement("div");
+  let modal1SubDiv1 = document.createElement('div');
 
   //Modal 1 subdiv 2 from outermost div
-  let modal1SubDiv2 = document.createElement("div");
+  let modal1SubDiv2 = document.createElement('div');
 
   //Modal body
-  let modalBody = document.createElement("div");
-  let modalBodyForm = document.createElement("form");
+  let modalBody = document.createElement('div');
+  let modalBodyForm = document.createElement('form');
 
   //styling for modal 1 outermost div
-  modal1OutermostDiv.className = "modal fade";
+  modal1OutermostDiv.className = 'modal fade';
   modal1OutermostDiv.id = `TaskOptions${REVISEDtaskTitle}`;
-  modal1OutermostDiv.setAttribute("tabindex", "-1");
-  modal1OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
-  modal1OutermostDiv.setAttribute("aria-hidden", "true");
+  modal1OutermostDiv.setAttribute('tabindex', '-1');
+  modal1OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
+  modal1OutermostDiv.setAttribute('aria-hidden', 'true');
 
   //styling for subDiv1 from outermost div
-  modal1SubDiv1.className = "modal-dialog";
+  modal1SubDiv1.className = 'modal-dialog';
 
   //styling for subDiv2 from outermost div
-  modal1SubDiv2.className = "modal-content";
+  modal1SubDiv2.className = 'modal-content';
 
   //styling for the modal body
-  modalBody.className = "modal-body";
+  modalBody.className = 'modal-body';
 
   //row 1 vars and declarations
-  let modalBodyRow1 = document.createElement("div");
-  let modalBodyCol1 = document.createElement("div");
-  let modalLabelRow1 = document.createElement("label");
-  let modalInputRow1 = document.createElement("input");
-  let modalTaskNameError = document.createElement("div");
+  let modalBodyRow1 = document.createElement('div');
+  let modalBodyCol1 = document.createElement('div');
+  let modalLabelRow1 = document.createElement('label');
+  let modalInputRow1 = document.createElement('input');
+  let modalTaskNameError = document.createElement('div');
 
   //row 2 vars and declarations
-  let modalBodyRow2 = document.createElement("div");
-  let modalBodyLabel2 = document.createElement("label");
-  let modalBodyCol2 = document.createElement("div");
-  let modalInputRow2 = document.createElement("input");
-  let modalTaskDescriptionError = document.createElement("div");
+  let modalBodyRow2 = document.createElement('div');
+  let modalBodyLabel2 = document.createElement('label');
+  let modalBodyCol2 = document.createElement('div');
+  let modalInputRow2 = document.createElement('input');
+  let modalTaskDescriptionError = document.createElement('div');
 
   //row 3 vars and declarations
-  let modalBodyRow3 = document.createElement("div");
-  let modalBodyLabel3 = document.createElement("label");
-  let modalBodyCol3 = document.createElement("div");
-  let modalBodySelect3 = document.createElement("select");
-  let modalTaskPriorityError = document.createElement("div");
+  let modalBodyRow3 = document.createElement('div');
+  let modalBodyLabel3 = document.createElement('label');
+  let modalBodyCol3 = document.createElement('div');
+  let modalBodySelect3 = document.createElement('select');
+  let modalTaskPriorityError = document.createElement('div');
 
   //different options for the select
-  let modalBodySelectThreeOption1 = document.createElement("option");
-  let modalBodySelectThreeOption2 = document.createElement("option");
-  let modalBodySelectThreeOption3 = document.createElement("option");
-  let modalBodySelectThreeOption4 = document.createElement("option");
+  let modalBodySelectThreeOption1 = document.createElement('option');
+  let modalBodySelectThreeOption2 = document.createElement('option');
+  let modalBodySelectThreeOption3 = document.createElement('option');
+  let modalBodySelectThreeOption4 = document.createElement('option');
 
   //row 3 vars and declarations
-  let modalBodyRow4 = document.createElement("div");
-  let modalBodyLabel4 = document.createElement("label");
-  let modalBodyCol4 = document.createElement("div");
-  let modalBodyInputRow4 = document.createElement("input");
-  let modalTaskDueDateError = document.createElement("div");
+  let modalBodyRow4 = document.createElement('div');
+  let modalBodyLabel4 = document.createElement('label');
+  let modalBodyCol4 = document.createElement('div');
+  let modalBodyInputRow4 = document.createElement('input');
+  let modalTaskDueDateError = document.createElement('div');
 
   //Modal1 Header
-  let modal1Header = document.createElement("div");
-  let modal1HeaderTitle = document.createElement("h5");
-  let modal1HeaderCloseBtn = document.createElement("button");
+  let modal1Header = document.createElement('div');
+  let modal1HeaderTitle = document.createElement('h5');
+  let modal1HeaderCloseBtn = document.createElement('button');
 
   //Modal1 footer
-  let modal1Footer = document.createElement("div");
-  let modal1FooterDeleteBtn = document.createElement("button");
-  let modal1FooterCloseBtn2 = document.createElement("button");
+  let modal1Footer = document.createElement('div');
+  let modal1FooterDeleteBtn = document.createElement('button');
+  let modal1FooterCloseBtn2 = document.createElement('button');
 
   //styling for the first row
-  modalBodyRow1.className = "mb-3 row";
-  modalBodyCol1.className = "col-sm-9";
-  modalLabelRow1.className = "col-sm-3 col-form-label";
-  modalLabelRow1.innerHTML = "Name:";
-  modalLabelRow1.setAttribute("for", ``);
-  modalInputRow1.className = "form-control";
+  modalBodyRow1.className = 'mb-3 row';
+  modalBodyCol1.className = 'col-sm-9';
+  modalLabelRow1.className = 'col-sm-3 col-form-label';
+  modalLabelRow1.innerHTML = 'Name:';
+  modalLabelRow1.setAttribute('for', ``);
+  modalInputRow1.className = 'form-control';
   modalInputRow1.id = `${taskTitle}Row`;
-  modalInputRow1.setAttribute("type", "text");
+  modalInputRow1.setAttribute('type', 'text');
 
   //styling for the second row
-  modalBodyRow2.className = "mb-3 row";
-  modalBodyLabel2.className = "col-sm-3 col-form-label";
-  modalBodyLabel2.innerHTML = "Description:";
-  modalBodyLabel2.setAttribute("for", `${taskDescription}`);
-  modalBodyCol2.className = "col-sm-9";
-  modalInputRow2.className = "form-control";
+  modalBodyRow2.className = 'mb-3 row';
+  modalBodyLabel2.className = 'col-sm-3 col-form-label';
+  modalBodyLabel2.innerHTML = 'Description:';
+  modalBodyLabel2.setAttribute('for', `${taskDescription}`);
+  modalBodyCol2.className = 'col-sm-9';
+  modalInputRow2.className = 'form-control';
   modalInputRow2.id = `${taskDescription}`;
-  modalInputRow2.setAttribute("type", "text");
+  modalInputRow2.setAttribute('type', 'text');
 
   //styling for the third row
-  modalBodyRow3.className = "mb-3 row";
-  modalBodyLabel3.className = "col-sm-3 col-form-label";
-  modalBodyLabel3.innerHTML = "Priority:";
-  modalBodyLabel3.setAttribute("for", "task-priority");
-  modalBodyCol3.className = "col-sm-9";
-  modalBodySelect3.className = "form-select";
+  modalBodyRow3.className = 'mb-3 row';
+  modalBodyLabel3.className = 'col-sm-3 col-form-label';
+  modalBodyLabel3.innerHTML = 'Priority:';
+  modalBodyLabel3.setAttribute('for', 'task-priority');
+  modalBodyCol3.className = 'col-sm-9';
+  modalBodySelect3.className = 'form-select';
   modalBodySelect3.id = `task-priority ${taskTitle}`;
-  modalBodySelect3.setAttribute("aria-label", "Select a task priority");
-  modalBodySelectThreeOption1.setAttribute("selected", "true");
-  modalBodySelectThreeOption1.innerHTML = "Open this select menu";
-  modalBodySelectThreeOption2.setAttribute("value", "1");
-  modalBodySelectThreeOption2.innerHTML = "To-Do";
-  modalBodySelectThreeOption3.setAttribute("value", "2");
-  modalBodySelectThreeOption3.innerHTML = "In Progress";
-  modalBodySelectThreeOption4.setAttribute("value", "3");
-  modalBodySelectThreeOption4.innerHTML = "Completed";
+  modalBodySelect3.setAttribute('aria-label', 'Select a task priority');
+  modalBodySelectThreeOption1.setAttribute('selected', 'true');
+  modalBodySelectThreeOption1.innerHTML = 'Open this select menu';
+  modalBodySelectThreeOption2.setAttribute('value', '1');
+  modalBodySelectThreeOption2.innerHTML = 'To-Do';
+  modalBodySelectThreeOption3.setAttribute('value', '2');
+  modalBodySelectThreeOption3.innerHTML = 'In Progress';
+  modalBodySelectThreeOption4.setAttribute('value', '3');
+  modalBodySelectThreeOption4.innerHTML = 'Completed';
 
   //styling for the fourth row
-  modalBodyRow4.className = "mb-2 row";
-  modalBodyLabel4.className = "col-sm-3 col-form-label";
-  modalBodyLabel4.innerHTML = "Due Date:";
-  modalBodyLabel4.setAttribute("for", `${dueDate}`);
-  modalBodyCol4.className = "col-sm-9";
-  modalBodyInputRow4.className = "calendarInput";
-  modalBodyInputRow4.id = "dueDate";
+  modalBodyRow4.className = 'mb-2 row';
+  modalBodyLabel4.className = 'col-sm-3 col-form-label';
+  modalBodyLabel4.innerHTML = 'Due Date:';
+  modalBodyLabel4.setAttribute('for', `${dueDate}`);
+  modalBodyCol4.className = 'col-sm-9';
+  modalBodyInputRow4.className = 'calendarInput';
+  modalBodyInputRow4.id = 'dueDate';
   modalBodyInputRow4.min = currentDate;
-  modalBodyInputRow4.setAttribute("type", "date");
+  modalBodyInputRow4.setAttribute('type', 'date');
 
   //styling for the modal 1 header
-  modal1Header.className = "modal-header";
-  modal1HeaderTitle.className = "modal-title";
-  modal1HeaderTitle.id = "exampleModalLabel";
-  modal1HeaderTitle.innerHTML = "Edit Task";
-  modal1HeaderCloseBtn.className = "btn-close";
-  modal1HeaderCloseBtn.setAttribute("type", "button");
-  modal1HeaderCloseBtn.setAttribute("data-bs-dismiss", "modal");
-  modal1HeaderCloseBtn.setAttribute("aria-label", "Close");
+  modal1Header.className = 'modal-header';
+  modal1HeaderTitle.className = 'modal-title';
+  modal1HeaderTitle.id = 'exampleModalLabel';
+  modal1HeaderTitle.innerHTML = 'Edit Task';
+  modal1HeaderCloseBtn.className = 'btn-close';
+  modal1HeaderCloseBtn.setAttribute('type', 'button');
+  modal1HeaderCloseBtn.setAttribute('data-bs-dismiss', 'modal');
+  modal1HeaderCloseBtn.setAttribute('aria-label', 'Close');
 
   //styling for the modal 1 footer
-  modal1Footer.className = "modal-footer";
-  modal1Footer.id = "TaskOptionsModalFooter";
-  modal1FooterDeleteBtn.className = "btn btn-danger";
-  modal1FooterDeleteBtn.innerHTML = "Delete Task";
+  modal1Footer.className = 'modal-footer';
+  modal1Footer.id = 'TaskOptionsModalFooter';
+  modal1FooterDeleteBtn.className = 'btn btn-danger';
+  modal1FooterDeleteBtn.innerHTML = 'Delete Task';
   //close the modal after deleting the task!
   //remove the elements: both the card and the modal from the DOM!
   //add the button first to the DOM
-  modal1FooterDeleteBtn.setAttribute("data-bs-dismiss", "modal"); //dismisses the modal
-  modal1FooterDeleteBtn.setAttribute("type", "button");
+  modal1FooterDeleteBtn.setAttribute('data-bs-dismiss', 'modal'); //dismisses the modal
+  modal1FooterDeleteBtn.setAttribute('type', 'button');
 
-  modal1FooterCloseBtn2.className = "btn btn-primary";
-  modal1FooterCloseBtn2.setAttribute("type", "button");
-  modal1FooterCloseBtn2.innerHTML = "Save Changes";
+  modal1FooterCloseBtn2.className = 'btn btn-primary';
+  modal1FooterCloseBtn2.setAttribute('type', 'button');
+  modal1FooterCloseBtn2.innerHTML = 'Save Changes';
 
   //putting the first modal row together
   modalBodyRow1.appendChild(modalLabelRow1);
@@ -388,58 +388,58 @@ const createBlock = (
   //MODAL 2 TASK DETAILS
 
   //modal outermost div
-  let modal2OutermostDiv = document.createElement("div");
+  let modal2OutermostDiv = document.createElement('div');
 
   //subdiv of outermost div
-  let modal2SubDiv1 = document.createElement("div");
+  let modal2SubDiv1 = document.createElement('div');
 
   //modal-content div
-  let modal2SubDiv2 = document.createElement("div");
+  let modal2SubDiv2 = document.createElement('div');
 
   //modal header
-  let modal2Header2 = document.createElement("div");
-  let modal2HeaderTitle = document.createElement("h5");
-  let modal2CloseModalBtn = document.createElement("button");
+  let modal2Header2 = document.createElement('div');
+  let modal2HeaderTitle = document.createElement('h5');
+  let modal2CloseModalBtn = document.createElement('button');
 
   //modal body declarations
-  let modal2Body = document.createElement("div");
-  let modal2BodyText = document.createElement("p");
-  let modal2BodyDueDate = document.createElement("p");
+  let modal2Body = document.createElement('div');
+  let modal2BodyText = document.createElement('p');
+  let modal2BodyDueDate = document.createElement('p');
 
   //modal footer declarations
-  let modal2Footer = document.createElement("div");
-  let modal2FooterBtn = document.createElement("button");
+  let modal2Footer = document.createElement('div');
+  let modal2FooterBtn = document.createElement('button');
 
-  modal2OutermostDiv.className = "modal fade";
-  modal2OutermostDiv.id = "ViewTask" + REVISEDtaskTitle;
-  modal2OutermostDiv.setAttribute("tabindex", "-1");
-  modal2OutermostDiv.setAttribute("aria-labelledby", "exampleModalLabel");
-  modal2OutermostDiv.setAttribute("aria-hidden", "true");
+  modal2OutermostDiv.className = 'modal fade';
+  modal2OutermostDiv.id = 'ViewTask' + REVISEDtaskTitle;
+  modal2OutermostDiv.setAttribute('tabindex', '-1');
+  modal2OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
+  modal2OutermostDiv.setAttribute('aria-hidden', 'true');
 
-  modal2SubDiv1.className = "modal-dialog";
+  modal2SubDiv1.className = 'modal-dialog';
 
-  modal2SubDiv2.className = "modal-content";
+  modal2SubDiv2.className = 'modal-content';
 
   //modal header styling
-  modal2Header2.className = "modal-header";
-  modal2HeaderTitle.className = "modal-title";
-  modal2HeaderTitle.innerHTML = "Task Details";
-  modal2CloseModalBtn.className = "btn-close";
-  modal2CloseModalBtn.setAttribute("type", "button");
-  modal2CloseModalBtn.setAttribute("data-bs-dismiss", "modal");
-  modal2CloseModalBtn.setAttribute("aria-label", "Close");
+  modal2Header2.className = 'modal-header';
+  modal2HeaderTitle.className = 'modal-title';
+  modal2HeaderTitle.innerHTML = 'Task Details';
+  modal2CloseModalBtn.className = 'btn-close';
+  modal2CloseModalBtn.setAttribute('type', 'button');
+  modal2CloseModalBtn.setAttribute('data-bs-dismiss', 'modal');
+  modal2CloseModalBtn.setAttribute('aria-label', 'Close');
 
   //modal body styling
-  modal2Body.className = "modal-body";
+  modal2Body.className = 'modal-body';
   modal2BodyText.innerHTML = taskDescription;
   modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
 
   //modal footer styling
-  modal2Footer.className = "modal-footer";
-  modal2FooterBtn.className = "btn btn-secondary";
-  modal2FooterBtn.setAttribute("type", "button");
-  modal2FooterBtn.setAttribute("data-bs-dismiss", "modal");
-  modal2FooterBtn.innerHTML = "Close";
+  modal2Footer.className = 'modal-footer';
+  modal2FooterBtn.className = 'btn btn-secondary';
+  modal2FooterBtn.setAttribute('type', 'button');
+  modal2FooterBtn.setAttribute('data-bs-dismiss', 'modal');
+  modal2FooterBtn.innerHTML = 'Close';
 
   //appending the modal header together
   modal2Header2.appendChild(modal2HeaderTitle);
@@ -462,22 +462,22 @@ const createBlock = (
   //----------------------------------------------------------------------------------------------------------------
 
   //CREATE ELEMENTS FOR THE CARDS
-  let outermostDiv = document.createElement("div");
+  let outermostDiv = document.createElement('div');
 
   //first row vars and declarations
-  let row1 = document.createElement("div");
-  let row1Div1 = document.createElement("div");
-  let row1h2 = document.createElement("h2");
+  let row1 = document.createElement('div');
+  let row1Div1 = document.createElement('div');
+  let row1h2 = document.createElement('h2');
 
   //second row vars and declarations
-  let row2 = document.createElement("div");
-  let row2Div2 = document.createElement("div");
-  let row2DivBtn = document.createElement("button");
+  let row2 = document.createElement('div');
+  let row2Div2 = document.createElement('div');
+  let row2DivBtn = document.createElement('button');
 
   //third row vars and declarations
-  let row3 = document.createElement("div");
-  let row3Div3 = document.createElement("div");
-  let row3DivBtn2 = document.createElement("button");
+  let row3 = document.createElement('div');
+  let row3Div3 = document.createElement('div');
+  let row3DivBtn2 = document.createElement('button');
 
   //truncate task name
   const truncateName = truncateTaskName(taskTitle, 10);
@@ -485,26 +485,26 @@ const createBlock = (
   //styling for first row
   outermostDiv.className = `col-12 ${cardType} mb-3`;
   outermostDiv.id = `outerMostDiv${taskTitle}`;
-  row1.className = "row";
-  row1Div1.className = "col-12 mt-2";
-  row1h2.className = "taskTitle text-center";
+  row1.className = 'row';
+  row1Div1.className = 'col-12 mt-2';
+  row1h2.className = 'taskTitle text-center';
   row1h2.innerHTML = truncateName;
 
   //styling for the second row
-  row2.className = "row mt-4";
-  row2Div2.className = "col-12 d-flex justify-content-center";
-  row2DivBtn.className = "btn btn-primary cardBtns";
-  row2DivBtn.innerHTML = "Task Options";
-  row2DivBtn.setAttribute("data-bs-target", `#TaskOptions${REVISEDtaskTitle}`);
-  row2DivBtn.setAttribute("data-bs-toggle", "modal");
+  row2.className = 'row mt-4';
+  row2Div2.className = 'col-12 d-flex justify-content-center';
+  row2DivBtn.className = 'btn btn-primary cardBtns';
+  row2DivBtn.innerHTML = 'Task Options';
+  row2DivBtn.setAttribute('data-bs-target', `#TaskOptions${REVISEDtaskTitle}`);
+  row2DivBtn.setAttribute('data-bs-toggle', 'modal');
 
   //styling for the third row
-  row3.className = "row mt-2 pb-3";
-  row3Div3.className = "col-12 d-flex justify-content-center";
-  row3DivBtn2.className = "btn btn-dark cardBtns";
-  row3DivBtn2.innerHTML = "View Task";
-  row3DivBtn2.setAttribute("data-bs-target", "#ViewTask" + REVISEDtaskTitle);
-  row3DivBtn2.setAttribute("data-bs-toggle", "modal");
+  row3.className = 'row mt-2 pb-3';
+  row3Div3.className = 'col-12 d-flex justify-content-center';
+  row3DivBtn2.className = 'btn btn-dark cardBtns';
+  row3DivBtn2.innerHTML = 'View Task';
+  row3DivBtn2.setAttribute('data-bs-target', '#ViewTask' + REVISEDtaskTitle);
+  row3DivBtn2.setAttribute('data-bs-toggle', 'modal');
 
   //append everything together
   outermostDiv.appendChild(row1);
@@ -530,8 +530,8 @@ const createBlock = (
   injectModals.appendChild(modal2OutermostDiv);
 
   //delete btn on task options
-  modal1FooterDeleteBtn.addEventListener("click", function () {
-    updateTaskCounter(task.priority, null, "REMOVE");
+  modal1FooterDeleteBtn.addEventListener('click', function () {
+    updateTaskCounter(task.priority, null, 'REMOVE');
     removeTaskFromLocalStorage(task);
 
     //remove card, view, and task options modal!
@@ -541,12 +541,12 @@ const createBlock = (
 
     alertInjectionLocation.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Task Deleted!</div>`;
     setTimeout(() => {
-      alertInjectionLocation.innerHTML = "";
+      alertInjectionLocation.innerHTML = '';
     }, 5000);
   });
 
   //save changes btn on task options
-  modal1FooterCloseBtn2.addEventListener("click", function () {
+  modal1FooterCloseBtn2.addEventListener('click', function () {
     const isEditNameValid = checkIfInputEmpty(modalInputRow1.value);
     const isEditDescriptionValid = checkIfInputEmpty(modalInputRow2.value);
     const isEditDueDateValid = checkIfInputEmpty(modalBodySelect3.value);
@@ -555,10 +555,10 @@ const createBlock = (
     );
 
     // remove errors
-    modalTaskNameError.innerHTML = "";
-    modalTaskDescriptionError.innerHTML = "";
-    modalTaskDueDateError.innerHTML = "";
-    modalTaskPriorityError.innerHTML = "";
+    modalTaskNameError.innerHTML = '';
+    modalTaskDescriptionError.innerHTML = '';
+    modalTaskDueDateError.innerHTML = '';
+    modalTaskPriorityError.innerHTML = '';
 
     //Data validate task before submitting it
     if (
@@ -590,7 +590,7 @@ const createBlock = (
     //close the edit task modal!
     modal1HeaderCloseBtn.click();
 
-    let newCardColorClass = "";
+    let newCardColorClass = '';
     let newInjectionLocation;
     let tempTaskObj = {
       id,
@@ -604,17 +604,17 @@ const createBlock = (
 
     // Changes should be reflected on the DOM
     switch (modalBodySelect3.value) {
-      case "1":
+      case '1':
         newInjectionLocation = todoColumn;
-        newCardColorClass = "todoCard";
+        newCardColorClass = 'todoCard';
         break;
-      case "2":
+      case '2':
         newInjectionLocation = inProgressColumn;
-        newCardColorClass = "inProgressCard";
+        newCardColorClass = 'inProgressCard';
         break;
-      case "3":
+      case '3':
         newInjectionLocation = completedColumn;
-        newCardColorClass = "completedCard";
+        newCardColorClass = 'completedCard';
         break;
     }
 
@@ -626,11 +626,11 @@ const createBlock = (
     //Alert message that task was successfully edited!
     alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
     setTimeout(() => {
-      alertInjectionLocation.innerHTML = "";
+      alertInjectionLocation.innerHTML = '';
     }, 5000);
 
     //Counter changes
-    updateTaskCounter(modalBodySelect3.value, task.priority, "SWITCH");
+    updateTaskCounter(modalBodySelect3.value, task.priority, 'SWITCH');
 
     //update task priority From to new From location
     task.priority = modalBodySelect3.value;
@@ -638,11 +638,11 @@ const createBlock = (
 };
 
 const modalNameFix = (taskTitle) => {
-  let newTitle = "";
+  let newTitle = '';
   let taskWordsArr = [];
-  taskWordsArr = taskTitle.split(" ");
+  taskWordsArr = taskTitle.split(' ');
   if (taskWordsArr.length > 1) {
-    newTitle = taskWordsArr.join(" ").replace(/ /g, ""); //the replace removes any white space in the words
+    newTitle = taskWordsArr.join(' ').replace(/ /g, ''); //the replace removes any white space in the words
   } else {
     newTitle = taskTitle;
   }
@@ -652,10 +652,9 @@ const modalNameFix = (taskTitle) => {
 loadTasksFromLocalStorage();
 loadTaskCountersOnLoad();
 
-
 // load tasks using local storage
 function loadTasksFromLocalStorage() {
-  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  const previousTasksArr = JSON.parse(localStorage.getItem('tasks'));
   //check if there are tasks in the arr!
   if (previousTasksArr !== null) {
     previousTasksArr.map((task) => {
@@ -663,17 +662,17 @@ function loadTasksFromLocalStorage() {
       let loadCardColorClass;
 
       switch (task.priority) {
-        case "1":
+        case '1':
           loadInjectionLocation = todoColumn;
-          loadCardColorClass = "todoCard";
+          loadCardColorClass = 'todoCard';
           break;
-        case "2":
+        case '2':
           loadInjectionLocation = inProgressColumn;
-          loadCardColorClass = "inProgressCard";
+          loadCardColorClass = 'inProgressCard';
           break;
-        case "3":
+        case '3':
           loadInjectionLocation = completedColumn;
-          loadCardColorClass = "completedCard";
+          loadCardColorClass = 'completedCard';
           break;
       }
       createBlock(
@@ -696,20 +695,20 @@ function updateTaskCounter(To, From = null, Type) {
   let CompletedCount = Number(CompletedCounter.innerText);
 
   if (From === null) {
-    if (Type === "ADD") {
+    if (Type === 'ADD') {
       switch (To) {
         //Add 1 to the counter!
-        case "1":
+        case '1':
           TodoCount++;
           TodoCounter.innerText = `${TodoCount}`;
           break;
 
-        case "2":
+        case '2':
           InProgressCount++;
           InProgressCounter.innerText = `${InProgressCount}`;
           break;
 
-        case "3":
+        case '3':
           CompletedCount++;
           CompletedCounter.innerText = `${CompletedCount}`;
           break;
@@ -717,20 +716,20 @@ function updateTaskCounter(To, From = null, Type) {
       return;
     }
 
-    if (Type === "REMOVE") {
+    if (Type === 'REMOVE') {
       switch (To) {
         //Subtract 1 to the counter!
-        case "1":
+        case '1':
           TodoCount--;
           TodoCounter.innerText = `${TodoCount}`;
           break;
 
-        case "2":
+        case '2':
           InProgressCount--;
           InProgressCounter.innerText = `${InProgressCount}`;
           break;
 
-        case "3":
+        case '3':
           CompletedCount--;
           CompletedCounter.innerText = `${CompletedCount}`;
           break;
@@ -739,39 +738,39 @@ function updateTaskCounter(To, From = null, Type) {
     }
   }
 
-  if (Type === "SWITCH") {
+  if (Type === 'SWITCH') {
     // subtract 1 from the "From" location
     // add 1 to the "To" location
 
     switch (From) {
-      case "1":
+      case '1':
         TodoCount--;
         TodoCounter.innerText = `${TodoCount}`;
         break;
 
-      case "2":
+      case '2':
         InProgressCount--;
         InProgressCounter.innerText = `${InProgressCount}`;
         break;
 
-      case "3":
+      case '3':
         CompletedCount--;
         CompletedCounter.innerText = `${CompletedCount}`;
         break;
     }
 
     switch (To) {
-      case "1":
+      case '1':
         TodoCount++;
         TodoCounter.innerText = `${TodoCount}`;
         break;
 
-      case "2":
+      case '2':
         InProgressCount++;
         InProgressCounter.innerText = `${InProgressCount}`;
         break;
 
-      case "3":
+      case '3':
         CompletedCount++;
         CompletedCounter.innerText = `${CompletedCount}`;
         break;
@@ -780,24 +779,24 @@ function updateTaskCounter(To, From = null, Type) {
 }
 
 function loadTaskCountersOnLoad() {
-  const previousTasksArr = JSON.parse(localStorage.getItem("tasks"));
+  const previousTasksArr = JSON.parse(localStorage.getItem('tasks'));
   let TodoCount = Number(TodoCounter.innerText);
   let InProgressCount = Number(InProgressCounter.innerText);
   let CompletedCount = Number(CompletedCounter.innerText);
 
   for (let i = 0; i < previousTasksArr.length; i++) {
     switch (previousTasksArr[i].priority) {
-      case "1":
+      case '1':
         TodoCount++;
         TodoCounter.innerText = `${TodoCount}`;
         break;
 
-      case "2":
+      case '2':
         InProgressCount++;
         InProgressCounter.innerText = `${InProgressCount}`;
         break;
 
-      case "3":
+      case '3':
         CompletedCount++;
         CompletedCounter.innerText = `${CompletedCount}`;
         break;
