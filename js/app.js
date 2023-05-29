@@ -16,7 +16,7 @@ import {
   2. View Task modal should also display priority!
 
   BUG
-  1. Edits made to a task are not reflected in the "view task" modal!
+  1. Really long task names look weird on view task modal!
 
 */
 
@@ -434,7 +434,7 @@ const createBlock = (
 
   //modal body styling
   modal2Body.className = 'modal-body';
-  modal2BodyText.innerHTML = taskDescription; //FIXME use innerHTML properly!
+  modal2BodyText.innerHTML = `<p>${taskDescription}</p>`;
   modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
 
   //modal footer styling
@@ -622,11 +622,14 @@ const createBlock = (
     }
 
     //card changes
-    row1h2.innerHTML = modalInputRow1.value;
+    row1h2.innerHTML = truncateTaskName(modalInputRow1.value, 10);
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
 
-    // FIXME Reflect changes made via task options on 'view task' modal
+    // View Task modal changes
+    modal2HeaderTitle.innerHTML = `<h3 class="modal-title">${modalInputRow1.value}</h3>`;
+    modal2BodyText.innerHTML = `<p>${modalInputRow2.value}</p>`;
+    modal2BodyDueDate.innerHTML = `Due date: <strong>${modalBodyInputRow4.value}</strong>`;
 
     //Alert message that task was successfully edited!
     alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
