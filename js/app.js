@@ -402,7 +402,7 @@ const createBlock = (
 
   //modal header
   let modal2Header2 = document.createElement('div');
-  let modal2HeaderTitle = document.createElement('h5');
+  let modal2HeaderTitle = document.createElement('h3');
   let modal2CloseModalBtn = document.createElement('button');
 
   //modal body declarations
@@ -426,7 +426,7 @@ const createBlock = (
 
   //modal header styling
   modal2Header2.className = 'modal-header';
-  modal2HeaderTitle.className = 'modal-title';
+  modal2HeaderTitle.className = 'view-task-header modal-title';
   modal2HeaderTitle.textContent = taskTitle;
   modal2CloseModalBtn.className = 'btn-close';
   modal2CloseModalBtn.setAttribute('type', 'button');
