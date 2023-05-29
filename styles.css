@@ -8,6 +8,15 @@ h1 {
   font-size: 36px;
 }
 
+h3 {
+  font-size: 23px;
+}
+
+.view-task-header {
+  width: 85%;
+  overflow-wrap: break-word;
+}
+
 /* Class Selectors */
 .task-container {
   background-color: rgb(8, 29, 57);
