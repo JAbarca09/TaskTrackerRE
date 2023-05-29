@@ -426,7 +426,7 @@ const createBlock = (
   //modal header styling
   modal2Header2.className = 'modal-header';
   modal2HeaderTitle.className = 'modal-title';
-  modal2HeaderTitle.innerHTML = `<h3 class="modal-title">${taskTitle}</h3>`;
+  modal2HeaderTitle.textContent = taskTitle;
   modal2CloseModalBtn.className = 'btn-close';
   modal2CloseModalBtn.setAttribute('type', 'button');
   modal2CloseModalBtn.setAttribute('data-bs-dismiss', 'modal');
@@ -627,7 +627,7 @@ const createBlock = (
     newInjectionLocation.appendChild(outermostDiv);
 
     // View Task modal changes
-    modal2HeaderTitle.innerHTML = `<h3 class="modal-title">${modalInputRow1.value}</h3>`;
+    modal2HeaderTitle.textContent = modalInputRow1.value;
     modal2BodyText.innerHTML = `<p>${modalInputRow2.value}</p>`;
     modal2BodyDueDate.innerHTML = `Due date: <strong>${modalBodyInputRow4.value}</strong>`;
 
