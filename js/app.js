@@ -15,11 +15,6 @@ import {
   1. View Task modal should display full name
   2. View Task modal should also display priority!
 
-  BUG
-  1. When a task gets special characters in the task name, neither modal on a card can be opened! EX: ';'
-    * Associate tasks with unique id rather than their flawed name with special chars
-    * Data validate name to not have special characters
-
 */
 
 //Task counter locations
@@ -184,7 +179,6 @@ const createBlock = (
   };
 
   //---------------------------------------------------------------------MODAL 1
-  const REVISEDtaskTitle = modalNameFix(taskTitle);
 
   //Modal 1 outermost div
   let modal1OutermostDiv = document.createElement('div');
@@ -201,7 +195,7 @@ const createBlock = (
 
   //styling for modal 1 outermost div
   modal1OutermostDiv.className = 'modal fade';
-  modal1OutermostDiv.id = `TaskOptions${REVISEDtaskTitle}`;
+  modal1OutermostDiv.id = `TaskOptions${id}`;
   modal1OutermostDiv.setAttribute('tabindex', '-1');
   modal1OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
   modal1OutermostDiv.setAttribute('aria-hidden', 'true');
@@ -417,7 +411,7 @@ const createBlock = (
   let modal2FooterBtn = document.createElement('button');
 
   modal2OutermostDiv.className = 'modal fade';
-  modal2OutermostDiv.id = 'ViewTask' + REVISEDtaskTitle;
+  modal2OutermostDiv.id = 'ViewTask' + id;
   modal2OutermostDiv.setAttribute('tabindex', '-1');
   modal2OutermostDiv.setAttribute('aria-labelledby', 'exampleModalLabel');
   modal2OutermostDiv.setAttribute('aria-hidden', 'true');
@@ -501,7 +495,7 @@ const createBlock = (
   row2Div2.className = 'col-12 d-flex justify-content-center';
   row2DivBtn.className = 'btn btn-primary cardBtns';
   row2DivBtn.innerHTML = 'Task Options';
-  row2DivBtn.setAttribute('data-bs-target', `#TaskOptions${REVISEDtaskTitle}`);
+  row2DivBtn.setAttribute('data-bs-target', `#TaskOptions${id}`);
   row2DivBtn.setAttribute('data-bs-toggle', 'modal');
 
   //styling for the third row
@@ -509,7 +503,7 @@ const createBlock = (
   row3Div3.className = 'col-12 d-flex justify-content-center';
   row3DivBtn2.className = 'btn btn-dark cardBtns';
   row3DivBtn2.innerHTML = 'View Task';
-  row3DivBtn2.setAttribute('data-bs-target', '#ViewTask' + REVISEDtaskTitle);
+  row3DivBtn2.setAttribute('data-bs-target', '#ViewTask' + id);
   row3DivBtn2.setAttribute('data-bs-toggle', 'modal');
 
   //append everything together
