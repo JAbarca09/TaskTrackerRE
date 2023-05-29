@@ -269,6 +269,7 @@ const createBlock = (
   modalInputRow1.className = 'form-control';
   modalInputRow1.id = `${taskTitle}Row`;
   modalInputRow1.setAttribute('type', 'text');
+  modalInputRow1.setAttribute('maxlength', '40');
 
   //styling for the second row
   modalBodyRow2.className = 'mb-3 row';
