@@ -15,6 +15,9 @@ import {
   1. View Task modal should display full name
   2. View Task modal should also display priority!
 
+  BUG
+  1. Edits made to a task are not reflected in the "view task" modal!
+
 */
 
 //Task counter locations
@@ -423,7 +426,7 @@ const createBlock = (
   //modal header styling
   modal2Header2.className = 'modal-header';
   modal2HeaderTitle.className = 'modal-title';
-  modal2HeaderTitle.innerHTML = 'Task Details';
+  modal2HeaderTitle.innerHTML = `<h3 class="modal-title">${taskTitle}</h3>`;
   modal2CloseModalBtn.className = 'btn-close';
   modal2CloseModalBtn.setAttribute('type', 'button');
   modal2CloseModalBtn.setAttribute('data-bs-dismiss', 'modal');
@@ -431,7 +434,7 @@ const createBlock = (
 
   //modal body styling
   modal2Body.className = 'modal-body';
-  modal2BodyText.innerHTML = taskDescription;
+  modal2BodyText.innerHTML = taskDescription; //FIXME use innerHTML properly!
   modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
 
   //modal footer styling
@@ -622,6 +625,8 @@ const createBlock = (
     row1h2.innerHTML = modalInputRow1.value;
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
+
+    // FIXME Reflect changes made via task options on 'view task' modal
 
     //Alert message that task was successfully edited!
     alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
