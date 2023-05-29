@@ -642,18 +642,6 @@ const createBlock = (
   });
 };
 
-const modalNameFix = (taskTitle) => {
-  let newTitle = '';
-  let taskWordsArr = [];
-  taskWordsArr = taskTitle.split(' ');
-  if (taskWordsArr.length > 1) {
-    newTitle = taskWordsArr.join(' ').replace(/ /g, ''); //the replace removes any white space in the words
-  } else {
-    newTitle = taskTitle;
-  }
-  return newTitle;
-};
-
 loadTasksFromLocalStorage();
 loadTaskCountersOnLoad();
 
