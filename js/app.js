@@ -12,9 +12,7 @@ import {
 
 /*
   TODO
-  1. View Task modal should display full name
-  2. View Task modal should also display priority!
-
+  1. View Task modal should also display priority!
 */
 
 //Task counter locations
