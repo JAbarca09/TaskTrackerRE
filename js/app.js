@@ -8,6 +8,7 @@ import {
   checkIfInputEmpty,
   checkIfPriorityIsValid,
   truncateTaskName,
+  taskPriorityText,
 } from './helperFunctions.js';
 
 /*
@@ -403,6 +404,7 @@ const createBlock = (
   let modal2Body = document.createElement('div');
   let modal2BodyText = document.createElement('p');
   let modal2BodyDueDate = document.createElement('p');
+  let modal2BodyPriority = document.createElement('p');
 
   //modal footer declarations
   let modal2Footer = document.createElement('div');
@@ -427,10 +429,13 @@ const createBlock = (
   modal2CloseModalBtn.setAttribute('data-bs-dismiss', 'modal');
   modal2CloseModalBtn.setAttribute('aria-label', 'Close');
 
+  let taskPriorityTaskText = taskPriorityText(priority);
+
   //modal body styling
   modal2Body.className = 'modal-body';
   modal2BodyText.innerHTML = `<p>${taskDescription}</p>`;
   modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
+  modal2BodyPriority.innerHTML = `<p>Task Status: <strong>${taskPriorityTaskText}</strong></p>`;
 
   //modal footer styling
   modal2Footer.className = 'modal-footer';
@@ -446,6 +451,7 @@ const createBlock = (
   //appending the modal body together
   modal2Body.appendChild(modal2BodyText);
   modal2Body.appendChild(modal2BodyDueDate);
+  modal2Body.appendChild(modal2BodyPriority);
 
   //appending the modal footer together
   modal2Footer.appendChild(modal2FooterBtn);
@@ -616,15 +622,18 @@ const createBlock = (
         break;
     }
 
+    
     //card changes
+    taskPriorityTaskText = taskPriorityText(modalBodySelect3.value);
     row1h2.innerHTML = truncateTaskName(modalInputRow1.value, 10);
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
-
+    
     // View Task modal changes
     modal2HeaderTitle.textContent = modalInputRow1.value;
     modal2BodyText.innerHTML = `<p>${modalInputRow2.value}</p>`;
     modal2BodyDueDate.innerHTML = `Due date: <strong>${modalBodyInputRow4.value}</strong>`;
+    modal2BodyPriority.innerHTML = `<p>Task Status: <strong>${taskPriorityTaskText}</strong></p>`;
 
     //Alert message that task was successfully edited!
     alertInjectionLocation.innerHTML = `<div class="alert alert-success mt-3" role="alert">Task Edited!</div>`;
