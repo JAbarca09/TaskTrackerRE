@@ -13,7 +13,11 @@ import {
 
 /*
   TODO
-  1. View Task modal should also display priority!
+  1. Fix view tasks modal order
+  
+  FIXME
+  * Display the due date and task status above the task description
+  * The task description should begin with "Task Description:" description...
 */
 
 //Task counter locations
