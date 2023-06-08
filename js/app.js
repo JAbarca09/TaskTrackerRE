@@ -438,8 +438,8 @@ const createBlock = (
 
   //modal body styling
   modal2Body.className = 'modal-body';
-  modal2BodyText.innerHTML = `<p>${taskDescription}</p>`;
-  modal2BodyDueDate.innerHTML = `Due date: <strong>${dueDate}</strong>`;
+  modal2BodyText.innerHTML = `<p>Task Description: ${taskDescription}</p>`;
+  modal2BodyDueDate.innerHTML = `Due Date: <strong>${dueDate}</strong>`;
   modal2BodyPriority.innerHTML = `<p>Task Status: <strong>${taskPriorityTaskText}</strong></p>`;
 
   //modal footer styling
