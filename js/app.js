@@ -454,9 +454,9 @@ const createBlock = (
   modal2Header2.appendChild(modal2CloseModalBtn);
 
   //appending the modal body together
-  modal2Body.appendChild(modal2BodyText);
-  modal2Body.appendChild(modal2BodyDueDate);
   modal2Body.appendChild(modal2BodyPriority);
+  modal2Body.appendChild(modal2BodyDueDate);
+  modal2Body.appendChild(modal2BodyText);
 
   //appending the modal footer together
   modal2Footer.appendChild(modal2FooterBtn);
