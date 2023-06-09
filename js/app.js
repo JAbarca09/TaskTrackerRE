@@ -9,6 +9,7 @@ import {
   checkIfPriorityIsValid,
   truncateTaskName,
   taskPriorityText,
+  formatDate,
 } from './helperFunctions.js';
 
 /*
@@ -431,11 +432,12 @@ const createBlock = (
   modal2CloseModalBtn.setAttribute('aria-label', 'Close');
 
   let taskPriorityTaskText = taskPriorityText(priority);
+  let formattedDate = formatDate(dueDate);
 
   //modal body styling
   modal2Body.className = 'modal-body';
   modal2BodyText.innerHTML = `<p>Task Description: ${taskDescription}</p>`;
-  modal2BodyDueDate.innerHTML = `Due Date: <strong>${dueDate}</strong>`;
+  modal2BodyDueDate.innerHTML = `Due Date: <strong>${formattedDate}</strong>`;
   modal2BodyPriority.innerHTML = `<p>Task Status: <strong>${taskPriorityTaskText}</strong></p>`;
 
   //modal footer styling
@@ -623,17 +625,18 @@ const createBlock = (
         break;
     }
 
-    
     //card changes
     taskPriorityTaskText = taskPriorityText(modalBodySelect3.value);
     row1h2.innerHTML = truncateTaskName(modalInputRow1.value, 10);
     outermostDiv.className = `col-12 ${newCardColorClass} mb-3`;
     newInjectionLocation.appendChild(outermostDiv);
-    
+
+    let formattedDate2 = formatDate(modalBodyInputRow4.value);
+
     // View Task modal changes
     modal2HeaderTitle.textContent = modalInputRow1.value;
     modal2BodyText.innerHTML = `<p>${modalInputRow2.value}</p>`;
-    modal2BodyDueDate.innerHTML = `Due date: <strong>${modalBodyInputRow4.value}</strong>`;
+    modal2BodyDueDate.innerHTML = `Due date: <strong>${formattedDate2}</strong>`;
     modal2BodyPriority.innerHTML = `<p>Task Status: <strong>${taskPriorityTaskText}</strong></p>`;
 
     //Alert message that task was successfully edited!
