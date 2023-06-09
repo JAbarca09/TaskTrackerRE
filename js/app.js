@@ -13,12 +13,8 @@ import {
 
 /*
   TODO
-  1. Fix view tasks modal order
+  1. Fix date format using MM/DD/YYYY instead of YYYY-MM-DD
   
-  FIXME
-  * Display the due date and task status above the task description
-    * Order: Task status, due date, and then the task description
-  * The task description should begin with "Task Description:" description...
 */
 
 //Task counter locations
