@@ -14,7 +14,6 @@ import {
 
 /*
   TODO
-  1. Fix date format using MM/DD/YYYY instead of YYYY-MM-DD
   
 */
 
