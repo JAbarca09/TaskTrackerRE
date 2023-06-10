@@ -20,8 +20,9 @@ h3 {
 /* Class Selectors */
 .task-container {
   background-color: rgb(8, 29, 57);
-  width: 100%;
-  height: 100%;
+  margin: auto;
+  width: 70%;
+  height: 80vh;
   min-height: 500px;
   border-radius: 20px;
 }
@@ -31,6 +32,7 @@ h3 {
   color: black;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  margin: 0;
 }
 
 .modal {
